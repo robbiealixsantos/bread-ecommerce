@@ -60,16 +60,21 @@ function quantityChanged(event) {
 }
 
 function generateRandomID() {
-    return Math.random() * (10000 - 1) + 1;
+    min = Math.ceil(1);
+    max = Math.floor(10000);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function pixelTrackAddToCart(title, price) {
+    let priceString = price.replace("$", "");
+    let priceInt = parseInt(priceString);
+
     ttq.track('AddToCart', {
         content_id: generateRandomID(),
         content_type: 'product',
         content_name: title,
         quantity: 1,
-        price: price,
+        price: priceInt,
         value: price,
         currency: 'USD',
     });
