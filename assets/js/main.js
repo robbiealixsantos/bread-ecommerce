@@ -74,8 +74,8 @@ function pixelTrackAddToCart(title, price) {
         content_type: 'product',
         content_name: title,
         quantity: 1,
-        price: priceInt,
-        value: price,
+        price: price,
+        value: priceInt,
         currency: 'USD',
     });
     
