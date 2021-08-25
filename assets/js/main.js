@@ -33,6 +33,9 @@ function ready() {
 
 function purchaseClicked() {
     alert('Thank you for your purchase')
+
+    pixelTrackPurchase();
+
     var cartItems = document.getElementsByClassName('cart-items')[0]
     while (cartItems.hasChildNodes()) {
         cartItems.removeChild(cartItems.firstChild)
@@ -85,6 +88,30 @@ function pixelTrackAddToCart(title, price) {
 function pixelTrackSubscribe() {
     ttq.track('Subscribe');
     console.log("in the pixelTrackSubscribe");
+}
+
+function pixelTrackPurchase() {
+    var cartRows = cartItemContainer.getElementsByClassName('cart-row')
+
+    var total = 0
+    for (var i = 0; i < cartRows.length; i++) {
+        var cartRow = cartRows[i]
+        var priceElement = cartRow.getElementsByClassName('cart-price')[0]
+        var quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0]
+        var price = parseFloat(priceElement.innerText.replace('$', ''))
+        var quantity = quantityElement.value
+        total = total + (price * quantity)
+    }
+
+    ttq.track('CompletePayment', {
+        content_id: generateRandomID(),
+        content_type: 'payment',
+        content_name: 'complete payment',
+        quantity: parseInt(quantity),
+        price: total,
+        value: total,
+        currency: 'USD',
+    });
 }
 
 function addToCartClicked(event) {
