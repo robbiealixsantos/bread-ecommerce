@@ -91,7 +91,8 @@ function pixelTrackSubscribe() {
 }
 
 function pixelTrackPurchase() {
-    var cartRows = cartItemContainer.getElementsByClassName('cart-row')
+    var cartItemContainer = document.getElementsByClassName('cart-items')[0];
+    var cartRows = cartItemContainer.getElementsByClassName('cart-row');
 
     var total = 0
     for (var i = 0; i < cartRows.length; i++) {
