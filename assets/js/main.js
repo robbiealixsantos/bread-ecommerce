@@ -2,6 +2,12 @@ if (document.readyState == 'loading') {
     document.addEventListener('DOMContentLoaded', ready)
 } else {
     ready()
+
+    ttq.track('ViewContent', {
+        content_id: generateRandomID(),
+        content_type: 'product',
+        content_name: 'view main homepage'
+    });
 }
 
 function checkForPixel() {
@@ -29,6 +35,7 @@ function ready() {
 
     document.getElementsByClassName('btn-purchase')[0].addEventListener('click', purchaseClicked)
     document.getElementsByClassName('subscribe')[0].addEventListener('click', subscribeClicked)
+    document.getElementsByClassName('footer__contact')[0].addEventListener('click', pixelTrackSubscribe)
 }
 
 function purchaseClicked() {
@@ -90,6 +97,14 @@ function pixelTrackSubscribe() {
     console.log("in the pixelTrackSubscribe");
 }
 
+function pixelTrackContact() {
+    ttq.track('Contact', {
+        content_id: generateRandomID(),
+        content_type: 'product',
+        content_name: 'click on contact email address'
+    });
+}
+
 function pixelTrackPurchase() {
     var cartItemContainer = document.getElementsByClassName('cart-items')[0];
     var cartRows = cartItemContainer.getElementsByClassName('cart-row');
@@ -104,15 +119,39 @@ function pixelTrackPurchase() {
         total = total + (price * quantity)
     }
 
+    let transactionID = generateRandomID();
+
+    ttq.track('InitiateCheckout', {
+        content_id: transactionID,
+        content_type: 'product',
+        content_name: 'initiate checkout',
+        quantity: parseInt(quantity),
+        price: total,
+        value: total,
+        currency: 'USD',
+    });
+
     ttq.track('CompletePayment', {
-        content_id: generateRandomID(),
-        content_type: 'payment',
+        content_id: transactionID,
+        content_type: 'product',
         content_name: 'complete payment',
         quantity: parseInt(quantity),
         price: total,
         value: total,
         currency: 'USD',
     });
+
+    ttq.track('PlaceAnOrder', {
+        content_id: transactionID,
+        content_type: 'product',
+        content_name: 'place an order',
+        quantity: parseInt(quantity),
+        price: total,
+        value: total,
+        currency: 'USD',
+    });
+
+    console.log("in the pixelTrackPurchase");
 }
 
 function addToCartClicked(event) {
