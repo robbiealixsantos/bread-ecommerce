@@ -2,12 +2,6 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', readyEventHandler)
 } else {
     readyEventHandler()
-
-    ttq.track('ViewContent', {
-        content_id: generateRandomID(),
-        content_type: 'product',
-        content_name: 'view main homepage'
-    });
 }
 
 let userEmailAddress = "";
@@ -15,6 +9,8 @@ let loggedIn = false;
 let external_id = 0;
 
 function readyEventHandler() {
+    ttq.track('ViewContent');
+
     let removeCartItemButtons = document.getElementsByClassName('btn-danger')
     for (let i = 0; i < removeCartItemButtons.length; i++) {
         let button = removeCartItemButtons[i]
@@ -70,7 +66,7 @@ function mockPaymentDetailsDialogBox() {
 
     let cartItemContainer = document.getElementsByClassName('cart-items')[0];
     let cartRows = cartItemContainer.getElementsByClassName('cart-row');
-    
+
     let quantity = 0;
     let price = 0;
     let total = 0
@@ -168,7 +164,7 @@ function removeCartItem(event) {
         pixelIdentifyHandler(external_id, userEmailAddress)
     }
 
-    ttq.track('ClickButton', {content_name: 'clicked remove cart item'});
+    ttq.track('ClickButton');
     updateCartTotal()
 }
 
