@@ -194,15 +194,17 @@ function quantityChanged(event) {
         pixelIdentifyHandler(external_id, userEmailAddress)
     }
 
-    ttq.track('ClickButton', {
-        content_id: visit_id,
-        content_name: "change quantity"
-    });
-
     let input = event.target
     if (isNaN(input.value) || input.value <= 0) {
         input.value = 1
     }
+
+    ttq.track('ClickButton', {
+        content_id: visit_id,
+        content_name: "change quantity",
+        value: input.value
+    });
+
     updateCartTotal()
 }
 
