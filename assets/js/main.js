@@ -53,9 +53,6 @@ function mockLogin() {
 }
 
 function pixelIdentifyHandler(external_id, userEmailAddress) {
-    console.log("in the pixelIdentifyHandler");
-    console.log(external_id);
-    console.log(userEmailAddress);
     ttq.identify({
         external_id: external_id,
         email: userEmailAddress,
@@ -167,7 +164,7 @@ function removeCartItem(event) {
         pixelIdentifyHandler(external_id, userEmailAddress)
     }
 
-    ttq.track('ClickButton');
+    ttq.track('ClickButton', {content_name: "remove from cart"});
     updateCartTotal()
 }
 
