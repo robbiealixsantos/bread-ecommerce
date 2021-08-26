@@ -7,9 +7,14 @@ if (document.readyState === 'loading') {
 let userEmailAddress = "";
 let loggedIn = false;
 let external_id = 0;
+let visit_id = 0;
 
 function readyEventHandler() {
-    ttq.track('ViewContent');
+    visit_id = generateRandomID();
+    ttq.track('ViewContent', {
+        content_id: visit_id,
+        content_name: "view home page"
+    });
 
     let removeCartItemButtons = document.getElementsByClassName('btn-danger')
     for (let i = 0; i < removeCartItemButtons.length; i++) {
@@ -85,7 +90,7 @@ function mockPaymentDetailsDialogBox() {
     }
 
     ttq.track('InitiateCheckout', {
-        content_id: generateRandomID(),
+        content_id: visit_id,
         content_type: 'product',
         content_name: 'initiate checkout',
         quantity: parseInt(quantity),
@@ -143,16 +148,28 @@ function purchaseClicked() {
     }
 }
 
-function subscribeClicked() {
-    if (document.getElementsByClassName("newsletter__input").value === undefined) {
-        alert("Please enter your email address");
+function emailValidation(input) {
+    let regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    if (regexEmail.test(input)) {
+        return true;
     } else {
+        return false;
+    }
+}
+
+function subscribeClicked() {
+    let input = document.getElementById("subscription_email").value;
+
+    if (emailValidation(input)) {
         if (loggedIn) {
             pixelIdentifyHandler(external_id, userEmailAddress)
         }
-
+     
         alert('Thank you for subscribing');
         pixelTrackSubscribe();
+    } else {
+        alert('Please enter a valid email address');
     }
 }
 
@@ -164,11 +181,24 @@ function removeCartItem(event) {
         pixelIdentifyHandler(external_id, userEmailAddress)
     }
 
-    ttq.track('ClickButton', {content_name: "remove from cart"});
+    ttq.track('ClickButton', {
+        content_id: visit_id,
+        content_name: "remove from cart"
+    });
+
     updateCartTotal()
 }
 
 function quantityChanged(event) {
+    if (loggedIn) {
+        pixelIdentifyHandler(external_id, userEmailAddress)
+    }
+
+    ttq.track('ClickButton', {
+        content_id: visit_id,
+        content_name: "change quantity"
+    });
+
     let input = event.target
     if (isNaN(input.value) || input.value <= 0) {
         input.value = 1
@@ -191,7 +221,7 @@ function pixelTrackAddToCart(title, price) {
     }
 
     ttq.track('AddToCart', {
-        content_id: generateRandomID(),
+        content_id: visit_id,
         content_type: 'product',
         content_name: title,
         quantity: 1,
@@ -208,7 +238,11 @@ function pixelTrackSubscribe() {
         pixelIdentifyHandler(external_id, userEmailAddress)
     }
 
-    ttq.track('Subscribe');
+    ttq.track('Subscribe', {
+        content_id: visit_id,
+        content_name: "subscribe"
+    });
+
     console.log("in the pixelTrackSubscribe");
 }
 
@@ -218,7 +252,7 @@ function pixelTrackContact() {
     }
 
     ttq.track('Contact', {
-        content_id: generateRandomID(),
+        content_id: visit_id,
         content_type: 'product',
         content_name: 'click on contact email address'
     });
@@ -240,14 +274,12 @@ function pixelTrackPurchase() {
         total = total + (price * quantity)
     }
 
-    let transactionID = generateRandomID();
-
     if (loggedIn) {
         pixelIdentifyHandler(external_id, userEmailAddress)
     }
 
     ttq.track('CompletePayment', {
-        content_id: transactionID,
+        content_id: visit_id,
         content_type: 'product',
         content_name: 'complete payment',
         quantity: parseInt(quantity),
@@ -257,7 +289,7 @@ function pixelTrackPurchase() {
     });
 
     ttq.track('PlaceAnOrder', {
-        content_id: transactionID,
+        content_id: visit_id,
         content_type: 'product',
         content_name: 'place an order',
         quantity: parseInt(quantity),
