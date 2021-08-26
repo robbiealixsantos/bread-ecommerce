@@ -53,6 +53,9 @@ function mockLogin() {
 }
 
 function pixelIdentifyHandler(external_id, userEmailAddress) {
+    console.log("in the pixelIdentifyHandler");
+    console.log(external_id);
+    console.log(userEmailAddress);
     ttq.identify({
         external_id: external_id,
         email: userEmailAddress,
@@ -228,13 +231,15 @@ function pixelTrackPurchase() {
     let cartItemContainer = document.getElementsByClassName('cart-items')[0];
     let cartRows = cartItemContainer.getElementsByClassName('cart-row');
 
+    let quantity = 0;
     let total = 0
+
     for (let i = 0; i < cartRows.length; i++) {
         let cartRow = cartRows[i]
         let priceElement = cartRow.getElementsByClassName('cart-price')[0]
         let quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0]
         let price = parseFloat(priceElement.innerText.replace('$', ''))
-        let quantity = quantityElement.value
+        quantity = quantityElement.value
         total = total + (price * quantity)
     }
 
