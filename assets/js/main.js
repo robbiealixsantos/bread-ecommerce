@@ -70,14 +70,17 @@ function mockPaymentDetailsDialogBox() {
 
     let cartItemContainer = document.getElementsByClassName('cart-items')[0];
     let cartRows = cartItemContainer.getElementsByClassName('cart-row');
-
+    
+    let quantity = 0;
+    let price = 0;
     let total = 0
+
     for (let i = 0; i < cartRows.length; i++) {
         let cartRow = cartRows[i]
         let priceElement = cartRow.getElementsByClassName('cart-price')[0]
         let quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0]
-        let price = parseFloat(priceElement.innerText.replace('$', ''))
-        let quantity = quantityElement.value
+        price = parseFloat(priceElement.innerText.replace('$', ''))
+        quantity = quantityElement.value
         total = total + (price * quantity)
     }
 
@@ -244,7 +247,7 @@ function pixelTrackPurchase() {
     if (loggedIn) {
         pixelIdentifyHandler(external_id, userEmailAddress)
     }
-    
+
     ttq.track('CompletePayment', {
         content_id: transactionID,
         content_type: 'product',
