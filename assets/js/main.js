@@ -118,10 +118,11 @@ function mockPaymentDetailsDialogBox() {
             userEmailAddress = emailAddress;
             external_id = generateRandomID();
             loggedIn = true;
-            
+
             document.getElementById("login").innerHTML = "Welcome " + emailAddress;
 
             pixelIdentifyHandler(external_id, userEmailAddress)
+            return true;
         } else {
             return true;
         }
@@ -217,10 +218,23 @@ function quantityChanged(event) {
         input.value = 1
     }
 
+    let cartItemContainer = document.getElementsByClassName('cart-items')[0]
+    let cartRows = cartItemContainer.getElementsByClassName('cart-row')
+    let total = 0
+    for (let i = 0; i < cartRows.length; i++) {
+        let cartRow = cartRows[i]
+        let priceElement = cartRow.getElementsByClassName('cart-price')[0]
+        let quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0]
+        let price = parseFloat(priceElement.innerText.replace('$', ''))
+        let quantity = quantityElement.value
+        total = total + (price * quantity)
+    }
+
     ttq.track('ClickButton', {
         content_id: visit_id,
-        content_name: "change quantity",
-        value: input.value
+        content_name: "change quantity - cart total",
+        value: input.value,
+        price: total
     });
 
     updateCartTotal()
