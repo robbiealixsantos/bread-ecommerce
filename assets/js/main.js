@@ -121,8 +121,9 @@ function mockPaymentDetailsDialogBox() {
             document.getElementById("login").innerHTML = "Welcome " + emailAddress;
 
             pixelIdentifyHandler(external_id, userEmailAddress)
+        } else {
+            return true;
         }
-        return true;
     } else {
         alert("Payment step cancelled!");
         return false;
