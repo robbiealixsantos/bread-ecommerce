@@ -89,7 +89,7 @@ function pixelCompleteRegistrationHandler() {
 }
 
 function mockPaymentDetailsDialogBox() {
-    let retVal = confirm("This is a Mock Payment Information Screen - User Inputs Payment Information here and InitiateCheckout event is triggered. Events CompletePayment " +
+    let retVal = confirm("This is a Mock Payment Information Screen - User Inputs Payment Information here and InitiateCheckout event is triggered. Events AddPaymentInfo, CompletePayment, " +
         "and PlaceAnOrder are triggered afterwards. Clicking cancel here stops payment process and only InitiateCheckout event is tracked");
 
     let cartItemContainer = document.getElementsByClassName('cart-items')[0];
