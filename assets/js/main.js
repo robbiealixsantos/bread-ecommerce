@@ -58,7 +58,7 @@ function pixelTrackLandingPageTime() {
 
 
 function mockLogin() {
-    let emailAddress = prompt("Mock login screen - enter an email address to continue. Entered email address will be used for advanced tracking", "");
+    let emailAddress = prompt("Mock login screen - enter an email address to continue. Entered email address will be used for advanced tracking.", "");
     
     if (emailAddress.length > 0) {
       document.getElementById("login").innerHTML = "Welcome " + emailAddress;
@@ -320,6 +320,16 @@ function pixelTrackPurchase() {
     if (loggedIn) {
         pixelIdentifyHandler(external_id, userEmailAddress)
     }
+
+    ttq.track('AddPaymentInfo', {
+        content_id: visit_id,
+        content_type: 'product',
+        content_name: 'add payment info',
+        quantity: parseInt(quantity),
+        price: total,
+        value: total,
+        currency: 'USD',
+    });
 
     ttq.track('CompletePayment', {
         content_id: visit_id,
