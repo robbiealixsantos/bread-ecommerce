@@ -4,6 +4,8 @@ if (document.readyState === 'loading') {
     readyEventHandler()
 }
 
+//Track if user is on landing page for more than 10 seconds
+window.setTimeout(pixelTrackLandingPageTime(10), 10000);
 
 // Global vars for mock login flow - most information should be coming from application backend/db
 let userEmailAddress = "";
@@ -41,9 +43,6 @@ function readyEventHandler() {
     document.getElementsByClassName('subscribe')[0].addEventListener('click', subscribeClicked)
     document.getElementsByClassName('footer__contact')[0].addEventListener('click', pixelTrackContact)
     document.getElementsByClassName('login__link')[0].addEventListener('click', mockLogin)
-
-    //Track if user is on landing page for more than 10 seconds
-    window.setTimeout(pixelTrackLandingPageTime(10), 10000);
 }
 
 function checkForPixel() {
