@@ -4,8 +4,11 @@ if (document.readyState === 'loading') {
     readyEventHandler()
 }
 
+
+// Global vars for mock login flow - most information should be coming from application backend/db
 let userEmailAddress = "";
 let loggedIn = false;
+let isNewUser = true;
 let external_id = 0;
 let visit_id = 0;
 
@@ -38,11 +41,22 @@ function readyEventHandler() {
     document.getElementsByClassName('subscribe')[0].addEventListener('click', subscribeClicked)
     document.getElementsByClassName('footer__contact')[0].addEventListener('click', pixelTrackContact)
     document.getElementsByClassName('login__link')[0].addEventListener('click', mockLogin)
+
+    //Track if user is on landing page for more than 10 seconds
+    window.setTimeout(pixelTrackLandingPageTime(10), 10000);
 }
 
 function checkForPixel() {
     return ttq ? pixelLoaded = true : pixelLoaded = false
 }
+
+function pixelTrackLandingPageTime(seconds) {
+    ttq.track('ViewContent', {
+        content_id: visit_id,
+        content_name: `view home page - ${seconds} seconds`
+    });
+}
+
 
 function mockLogin() {
     let emailAddress = prompt("Mock login screen - enter an email address to continue. Entered email address will be used for advanced tracking", "");
@@ -103,8 +117,11 @@ function mockPaymentDetailsDialogBox() {
         if (!loggedIn) {
             let emailAddress = prompt("Email address prompt for mock payment and to apply Advanced Matching with related events", "");
             userEmailAddress = emailAddress;
+            external_id = generateRandomID();
 
             document.getElementById("login").innerHTML = "Welcome " + emailAddress;
+
+            pixelIdentifyHandler(external_id, userEmailAddress)
         }
         return true;
     } else {
