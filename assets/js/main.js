@@ -67,6 +67,9 @@ function mockLogin() {
       loggedIn = true;
       userEmailAddress = emailAddress;
       external_id = generateRandomID();
+
+      pixelIdentifyHandler(external_id, userEmailAddress);
+      pixelCompleteRegistrationHandler();
     }
 }
 
@@ -76,6 +79,13 @@ function pixelIdentifyHandler(external_id, userEmailAddress) {
         email: userEmailAddress,
         phone_number: '+19171234567',
     })
+}
+
+function pixelCompleteRegistrationHandler() {
+    ttq.track('CompleteRegistration', {
+        content_id: visit_id,
+        content_name: 'registration complete'
+    });
 }
 
 function mockPaymentDetailsDialogBox() {
@@ -122,6 +132,7 @@ function mockPaymentDetailsDialogBox() {
             document.getElementById("login").innerHTML = "Welcome " + emailAddress;
 
             pixelIdentifyHandler(external_id, userEmailAddress)
+            pixelCompleteRegistrationHandler();
             return true;
         } else {
             return true;
