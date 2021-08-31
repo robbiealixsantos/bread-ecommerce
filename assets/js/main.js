@@ -117,7 +117,8 @@ function mockPaymentDetailsDialogBox() {
             let emailAddress = prompt("Email address prompt for mock payment and to apply Advanced Matching with related events", "");
             userEmailAddress = emailAddress;
             external_id = generateRandomID();
-
+            loggedIn = true;
+            
             document.getElementById("login").innerHTML = "Welcome " + emailAddress;
 
             pixelIdentifyHandler(external_id, userEmailAddress)
