@@ -4,6 +4,16 @@ if (document.readyState === 'loading') {
     readyEventHandler()
 }
 
+function checkForPixel() {
+    return ttq ? pixelLoaded = true : pixelLoaded = false
+}
+
+function generateRandomID() {
+    min = Math.ceil(1);
+    max = Math.floor(10000);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 // Global vars for mock login flow - most information should be coming from application backend/db
 let userEmailAddress = "";
 let loggedIn = false;
@@ -11,12 +21,14 @@ let isNewUser = true;
 let external_id = 0;
 let visit_id = 0;
 
+//TT Events can be used as proxies 
+
 function readyEventHandler() {
     visit_id = generateRandomID();
-    ttq.track('ViewContent', {
-        content_id: visit_id,
-        content_name: "view home page"
-    });
+    // ttq.track('ViewContent', {
+    //     content_id: visit_id,
+    //     content_name: "view home page"
+    // });
 
     let removeCartItemButtons = document.getElementsByClassName('btn-danger')
     for (let i = 0; i < removeCartItemButtons.length; i++) {
@@ -45,17 +57,12 @@ function readyEventHandler() {
     window.setTimeout(pixelTrackLandingPageTime, 10000);
 }
 
-function checkForPixel() {
-    return ttq ? pixelLoaded = true : pixelLoaded = false
-}
-
 function pixelTrackLandingPageTime() {
-    ttq.track('ViewContent', {
-        content_id: visit_id,
-        content_name: `view home page - 10 seconds`
-    });
+    // ttq.track('ViewContent', {
+    //     content_id: visit_id,
+    //     content_name: `view home page - 10 seconds`
+    // });
 }
-
 
 function mockLogin() {
     let emailAddress = prompt("Mock login screen - enter an email address to continue. Entered email address will be used for advanced tracking.", "");
@@ -251,12 +258,6 @@ function quantityChanged(event) {
     updateCartTotal()
 }
 
-function generateRandomID() {
-    min = Math.ceil(1);
-    max = Math.floor(10000);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
 function pixelTrackAddToCart(title, price) {
     let priceString = price.replace("$", "");
     let priceInt = parseInt(priceString);
@@ -325,9 +326,9 @@ function pixelTrackPurchase() {
         content_id: visit_id,
         content_type: 'product',
         content_name: 'add payment info',
-        quantity: parseInt(quantity),
-        price: total,
-        value: total,
+        quantity: parseInt(quantity), //amount of items
+        price: total, //total amount
+        value: total, //per item
         currency: 'USD',
     });
 
