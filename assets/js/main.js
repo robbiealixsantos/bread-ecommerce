@@ -58,10 +58,10 @@ function readyEventHandler() {
 }
 
 function pixelTrackLandingPageTime() {
-    // ttq.track('ViewContent', {
-    //     content_id: visit_id,
-    //     content_name: `view home page - 10 seconds`
-    // });
+    ttq.track('ViewContent', {
+        content_id: visit_id,
+        content_name: `view home page - 10 seconds`
+    });
 }
 
 function mockLogin() {
@@ -122,7 +122,7 @@ function mockPaymentDetailsDialogBox() {
     ttq.track('InitiateCheckout', {
         content_id: visit_id,
         content_type: 'product',
-        content_name: 'initiate checkout',
+        content_name: 'content_name placeholder',
         quantity: parseInt(quantity),
         price: total,
         value: total,
@@ -219,8 +219,8 @@ function removeCartItem(event) {
     }
 
     ttq.track('ClickButton', {
-        content_id: visit_id,
-        content_name: "remove from cart"
+        content_id: "content_id placeholder",
+        content_name: "content_name placeholder"
     });
 
     updateCartTotal()
@@ -250,7 +250,7 @@ function quantityChanged(event) {
 
     ttq.track('ClickButton', {
         content_id: visit_id,
-        content_name: "change quantity - cart total",
+        content_name: "content_name placeholder",
         value: input.value,
         price: total
     });
@@ -284,7 +284,7 @@ function pixelTrackSubscribe() {
 
     ttq.track('Subscribe', {
         content_id: visit_id,
-        content_name: "subscribe"
+        content_name: "content_name placeholder"
     });
 
     console.log("in the pixelTrackSubscribe");
@@ -298,7 +298,7 @@ function pixelTrackContact() {
     ttq.track('Contact', {
         content_id: visit_id,
         content_type: 'product',
-        content_name: 'click on contact email address'
+        content_name: "content_name placeholder"
     });
 }
 
@@ -325,7 +325,7 @@ function pixelTrackPurchase() {
     ttq.track('AddPaymentInfo', {
         content_id: visit_id,
         content_type: 'product',
-        content_name: 'add payment info',
+        content_name: 'content_name placeholder',
         quantity: parseInt(quantity), //amount of items
         price: total, //total amount
         value: total, //per item
@@ -335,7 +335,7 @@ function pixelTrackPurchase() {
     ttq.track('CompletePayment', {
         content_id: visit_id,
         content_type: 'product',
-        content_name: 'complete payment',
+        content_name: 'content_name placeholder',
         quantity: parseInt(quantity),
         price: total,
         value: total,
@@ -345,7 +345,7 @@ function pixelTrackPurchase() {
     ttq.track('PlaceAnOrder', {
         content_id: visit_id,
         content_type: 'product',
-        content_name: 'place an order',
+        content_name: 'content_name placeholder',
         quantity: parseInt(quantity),
         price: total,
         value: total,
