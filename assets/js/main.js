@@ -52,7 +52,7 @@ function readyEventHandler() {
     document.getElementsByClassName('subscribe')[0].addEventListener('click', subscribeClicked)
     document.getElementsByClassName('footer__contact')[0].addEventListener('click', pixelTrackContact)
     document.getElementsByClassName('login__link')[0].addEventListener('click', mockLogin)
-    document.getElementById('disableCookie')[0].addEventListener('click', ttqDisableCookieFire)
+    document.getElementById('disableCookie').addEventListener('click', ttqDisableCookieFire)
 
     //Track if user is on landing page for more than 10 seconds
     window.setTimeout(pixelTrackLandingPageTime, 10000);
