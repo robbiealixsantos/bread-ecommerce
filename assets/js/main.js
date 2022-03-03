@@ -83,7 +83,7 @@ function mockLogin() {
 
 function ttqDisableCookieFire() {
     ttq.disableCookie();
-    alert("ttq.disableCookie() fired - cookies should now be disabled");
+    alert("ttq.disableCookie() fired! Cookies should now be disabled. Please check the Pixel Helper - it should show no Pixels present on page");
 }
 
 function pixelIdentifyHandler(external_id, userEmailAddress) {
