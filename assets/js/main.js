@@ -207,7 +207,7 @@ function subscribeClicked() {
 
     if (emailValidation(input)) {
         ttq.track("Subscribe");
-        alert('Thank you for subscribing');
+        alert('Please check the Pixel Helper for the Auto_email parameter!');
     } else {
         alert('Please enter a valid email address');
     }
