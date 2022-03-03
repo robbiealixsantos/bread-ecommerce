@@ -202,6 +202,7 @@ function emailValidation(input) {
 }
 
 function subscribeClicked() {
+    prompt("Auto AM test - No ttq.identify() function placed before the tracking event", "");
     let input = document.getElementById("subscription_email").value;
 
     if (emailValidation(input)) {
