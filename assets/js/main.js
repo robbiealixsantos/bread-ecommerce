@@ -52,7 +52,7 @@ function readyEventHandler() {
     document.getElementsByClassName('subscribe')[0].addEventListener('click', subscribeClicked)
     document.getElementsByClassName('footer__contact')[0].addEventListener('click', pixelTrackContact)
     document.getElementsByClassName('login__link')[0].addEventListener('click', mockLogin)
-    document.getElementsByClassName('nav__item__disableCookie')[0].addEventListener('click', ttqDisableCookieFire)
+    document.getElementsByClassName('disable__cookie')[0].addEventListener('click', ttqDisableCookieFire)
 
     //Track if user is on landing page for more than 10 seconds
     window.setTimeout(pixelTrackLandingPageTime, 10000);
@@ -82,8 +82,8 @@ function mockLogin() {
 }
 
 function ttqDisableCookieFire() {
-    alert("ttq.disableCookie() fired - cookies should now be disabled");
     ttq.disableCookie();
+    alert("ttq.disableCookie() fired - cookies should now be disabled");
 }
 
 function pixelIdentifyHandler(external_id, userEmailAddress) {
