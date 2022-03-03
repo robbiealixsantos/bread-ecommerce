@@ -66,7 +66,7 @@ function pixelTrackLandingPageTime() {
 }
 
 function mockLogin() {
-    let emailAddress = prompt("Mock login screen - enter an email address to continue. Entered email address will be used for advanced matching.", "");
+    let emailAddress = prompt("Mock login screen - enter an email address to continue. Entered email address will be used for advanced matching. Example of a manual implementation with Auto AM active - ttq.identify() function placed before the tracking event", "");
     
     if (emailAddress.length > 0) {
       document.getElementById("login").innerHTML = "Welcome " + emailAddress;
@@ -205,17 +205,13 @@ function subscribeClicked() {
     let input = document.getElementById("subscription_email").value;
 
     if (emailValidation(input)) {
-        // if (loggedIn) {
-        //     pixelIdentifyHandler(external_id, userEmailAddress)
-        // }
-     
+        ttq.track("Subscribe");
         alert('Thank you for subscribing');
-        
     } else {
         alert('Please enter a valid email address');
     }
 
-    ttq.track("Subscribe");
+    
 }
 
 function removeCartItem(event) {
