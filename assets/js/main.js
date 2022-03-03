@@ -66,7 +66,7 @@ function pixelTrackLandingPageTime() {
 }
 
 function mockLogin() {
-    let emailAddress = prompt("Mock login screen - enter an email address to continue. Entered email address will be used for advanced tracking.", "");
+    let emailAddress = prompt("Mock login screen - enter an email address to continue. Entered email address will be used for advanced matching.", "");
     
     if (emailAddress.length > 0) {
       document.getElementById("login").innerHTML = "Welcome " + emailAddress;
@@ -205,15 +205,17 @@ function subscribeClicked() {
     let input = document.getElementById("subscription_email").value;
 
     if (emailValidation(input)) {
-        if (loggedIn) {
-            pixelIdentifyHandler(external_id, userEmailAddress)
-        }
+        // if (loggedIn) {
+        //     pixelIdentifyHandler(external_id, userEmailAddress)
+        // }
      
         alert('Thank you for subscribing');
-        pixelTrackSubscribe();
+        
     } else {
         alert('Please enter a valid email address');
     }
+
+    ttq.track("Subscribe");
 }
 
 function removeCartItem(event) {
