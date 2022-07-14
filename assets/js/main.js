@@ -62,7 +62,7 @@ function pixelTrackLandingPageTime() {
     ttq.track('ViewContent', {
         content_id: visit_id,
         content_name: `view home page - 10 seconds - sample bounce rate test`,
-        content_type: product
+        content_type: 'product'
     }, {event_id:'1239485'});
 }
 
