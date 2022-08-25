@@ -212,8 +212,6 @@ function subscribeClicked() {
     } else {
         alert('Please enter a valid email address');
     }
-
-    
 }
 
 function removeCartItem(event) {
