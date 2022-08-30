@@ -59,9 +59,14 @@ function readyEventHandler() {
 }
 
 function pixelTrackLandingPageTime() {
-    ttq.track('ViewContent', {
+    // ttq.track('ViewContent', {
+    //     content_id: visit_id,
+    //     content_name: `view home page - 10 seconds - sample bounce rate test`,
+    //     content_type: 'product'
+    // }, {event_id:'1239485'});
+    ttq.track('AddToWishlist', {
         content_id: visit_id,
-        content_name: `view home page - 10 seconds - sample bounce rate test`,
+        content_name: `Test AddToWishlist event - Custom Code Setup`,
         content_type: 'product'
     }, {event_id:'1239485'});
 }
