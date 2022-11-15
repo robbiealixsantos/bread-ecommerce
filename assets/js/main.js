@@ -70,33 +70,33 @@ function pixelTrackLandingPageTime() {
         content_type: 'product'
     }, {event_id:'1239485'});
 
-    ttq.track('Download', {
+    ttq.track('Search', {
         content_id: visit_id,
-        content_name: `Test Download event - Custom Code Setup - event 1`,
+        content_name: `Test Search event - Custom Code Setup - event 1`,
         content_type: 'product'
     });
 
-    ttq.track('Download', {
+    ttq.track('Search', {
         content_id: visit_id,
-        content_name: `Test Download event - Custom Code Setup - event 2`,
+        content_name: `Test Search event - Custom Code Setup - event 2`,
         content_type: 'product'
     });
 
-    ttq.track('Download', {
+    ttq.track('Search', {
         content_id: visit_id,
-        content_name: `Test Download event - Custom Code Setup - event 3`,
+        content_name: `Test Search event - Custom Code Setup - event 3`,
         content_type: 'product'
     });
 
-    ttq.track('Download', {
+    ttq.track('Search', {
         content_id: visit_id,
-        content_name: `Test Download event - Custom Code Setup - event 4`,
+        content_name: `Test Search event - Custom Code Setup - event 4`,
         content_type: 'product'
     });
 
-    ttq.track('Download', {
+    ttq.track('Search', {
         content_id: visit_id,
-        content_name: `Test Download event - Custom Code Setup - event 5`,
+        content_name: `Test Search event - Custom Code Setup - event 5`,
         content_type: 'product'
     });
 }
