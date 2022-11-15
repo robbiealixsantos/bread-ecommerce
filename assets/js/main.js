@@ -69,6 +69,36 @@ function pixelTrackLandingPageTime() {
         content_name: `Test AddToWishlist event - Custom Code Setup`,
         content_type: 'product'
     }, {event_id:'1239485'});
+
+    ttq.track('Download', {
+        content_id: visit_id,
+        content_name: `Test Download event - Custom Code Setup - event 1`,
+        content_type: 'product'
+    });
+
+    ttq.track('Download', {
+        content_id: visit_id,
+        content_name: `Test Download event - Custom Code Setup - event 2`,
+        content_type: 'product'
+    });
+
+    ttq.track('Download', {
+        content_id: visit_id,
+        content_name: `Test Download event - Custom Code Setup - event 3`,
+        content_type: 'product'
+    });
+
+    ttq.track('Download', {
+        content_id: visit_id,
+        content_name: `Test Download event - Custom Code Setup - event 4`,
+        content_type: 'product'
+    });
+
+    ttq.track('Download', {
+        content_id: visit_id,
+        content_name: `Test Download event - Custom Code Setup - event 5`,
+        content_type: 'product'
+    });
 }
 
 function mockLogin() {
