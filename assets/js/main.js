@@ -59,9 +59,9 @@ function readyEventHandler() {
 }
 
 function pixelTrackLandingPageTime() {
-    ttq.track('ViewContent', {
+    ttq.track('AddToWishlist', {
         content_id: visit_id,
-        content_name: `view home page - 10 seconds - sample bounce rate test`,
+        content_name: `Event tracked after 10 second wait`,
         content_type: 'product'
     }, {event_id:'1239485'});
 }
