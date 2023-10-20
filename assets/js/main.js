@@ -59,9 +59,9 @@ function readyEventHandler() {
 }
 
 function pixelTrackLandingPageTime() {
-    ttq.track('AddToWishlist', {
+    ttq.track('ViewContent', {
         content_id: visit_id,
-        content_name: `Event tracked after 10 second wait`,
+        content_name: `view home page - 10 seconds - sample bounce rate test`,
         content_type: 'product'
     }, {event_id:'1239485'});
 }
@@ -87,11 +87,10 @@ function ttqDisableCookieFire() {
     alert("ttq.disableCookie() fired! Cookies should now be disabled. Please check the Pixel Helper - it should show no Pixels present on page");
 }
 
-function pixelIdentifyHandler(external_id, userEmailAddress) {
+function pixelIdentifyFunction(userPhoneNumber, userEmailAddress) {
     ttq.identify({
-        external_id: external_id,
         email: userEmailAddress,
-        phone_number: '+19171234567',
+        phone_number: userPhoneNumber,
     })
 }
 
@@ -140,7 +139,7 @@ function mockPaymentDetailsDialogBox() {
         if (!loggedIn) {
             let emailAddress = prompt("Email address prompt for mock payment and to apply Advanced Matching with related events", "");
             userEmailAddress = emailAddress;
-            external_id = generateRandomID();
+            external_id = "9136abb9cb6c3d79df9bbd7b46c1f96a12557a8f89ada3f0a84ce0671d45e5a2";
             loggedIn = true;
 
             document.getElementById("login").innerHTML = "Welcome " + emailAddress;
