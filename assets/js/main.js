@@ -18,8 +18,12 @@ function generateRandomID() {
 let userEmailAddress = "";
 let loggedIn = false;
 let isNewUser = true;
-let external_id = 0;
 let visit_id = 0;
+
+let external_id = '9136abb9cb6c3d79df9bbd7b46c1f96a12557a8f89ada3f0a84ce0671d45e5a2';
+
+// TODO: Change this Pixel Reference for easy switching if required
+let ttqInstancePixelReference = 'CKR8EOJC77U1BIIGD66G';
 
 //TT Events can be used as proxies 
 
@@ -29,6 +33,12 @@ function readyEventHandler() {
     //     content_id: visit_id,
     //     content_name: "view home page"
     // });
+
+    // ttq.instance() for Custom Code Pixel only
+    ttq.instance(ttqInstancePixelReference).track('ViewContent', {
+        content_id: visit_id,
+        content_name: "view home page"
+    });
 
     let removeCartItemButtons = document.getElementsByClassName('btn-danger')
     for (let i = 0; i < removeCartItemButtons.length; i++) {
@@ -64,6 +74,11 @@ function pixelTrackLandingPageTime() {
     //     content_name: `view home page - 10 seconds - sample bounce rate test`,
     //     content_type: 'product'
     // }, {event_id:'1239485'});
+    ttq.instance(ttqInstancePixelReference).track('ViewContent', {
+        content_id: visit_id,
+        content_name: `view home page - 10 seconds - sample bounce rate test`,
+        content_type: 'product'
+    }, {event_id:'1239485'});
 }
 
 function mockLogin() {
@@ -75,7 +90,7 @@ function mockLogin() {
       //Log in user and assign email address and external id values for advanced matching on user for associated events
       loggedIn = true;
       userEmailAddress = emailAddress;
-      external_id = generateRandomID();
+      //external_id = generateRandomID();
 
       pixelIdentifyHandler(external_id, userEmailAddress);
       pixelCompleteRegistrationHandler();
@@ -91,6 +106,7 @@ function pixelIdentifyFunction(userPhoneNumber, userEmailAddress) {
     ttq.identify({
         email: userEmailAddress,
         phone_number: userPhoneNumber,
+        external_id: external_id
     })
 }
 
@@ -99,6 +115,11 @@ function pixelCompleteRegistrationHandler() {
     //     content_id: visit_id,
     //     content_name: 'registration complete'
     // });
+
+    ttq.instance(ttqInstancePixelReference).track('CompleteRegistration', {
+        content_id: visit_id,
+        content_name: 'registration complete' 
+    });
 }
 
 function mockPaymentDetailsDialogBox() {
@@ -135,11 +156,20 @@ function mockPaymentDetailsDialogBox() {
     //     currency: 'USD',
     // });
 
+    ttq.instance(ttqInstancePixelReference).track('InitiateCheckout', {
+        content_id: visit_id,
+        content_type: 'product',
+        content_name: 'content_name placeholder',
+        quantity: parseInt(quantity),
+        price: total,
+        value: total,
+        currency: 'USD',
+    });
+
     if (retVal === true) {
         if (!loggedIn) {
             let emailAddress = prompt("Email address prompt for mock payment and to apply Advanced Matching with related events", "");
             userEmailAddress = emailAddress;
-            external_id = "9136abb9cb6c3d79df9bbd7b46c1f96a12557a8f89ada3f0a84ce0671d45e5a2";
             loggedIn = true;
 
             document.getElementById("login").innerHTML = "Welcome " + emailAddress;
@@ -207,6 +237,7 @@ function subscribeClicked() {
 
     if (emailValidation(input)) {
         //ttq.track("Subscribe");
+        ttq.instance(ttqInstancePixelReference).track("Subscribe");
         alert('Please check the Pixel Helper for the Auto_email parameter!');
     } else {
         alert('Please enter a valid email address');
@@ -225,6 +256,11 @@ function removeCartItem(event) {
     //    content_id: "content_id placeholder",
     //    content_name: "content_name placeholder"
     //});
+
+    ttq.instance(ttqInstancePixelReference).track('ClickButton', {
+       content_id: "content_id placeholder",
+       content_name: "content_name placeholder"
+    });
 
     updateCartTotal()
 }
@@ -258,6 +294,13 @@ function quantityChanged(event) {
     //     price: total
     // });
 
+    ttq.instance(ttqInstancePixelReference).track('ClickButton', {
+        content_id: visit_id,
+        content_name: "content_name placeholder",
+        value: input.value,
+        price: total
+    });
+
     updateCartTotal()
 }
 
@@ -278,6 +321,16 @@ function pixelTrackAddToCart(title, price) {
     //     value: priceInt,
     //     currency: 'USD',
     // });
+
+    ttq.instance(ttqInstancePixelReference).track('AddToCart', {
+        content_id: visit_id,
+        content_type: 'product',
+        content_name: title,
+        quantity: 1,
+        price: priceInt,
+        value: priceInt,
+        currency: 'USD',
+    });
 }
 
 function pixelTrackSubscribe() {
@@ -289,6 +342,11 @@ function pixelTrackSubscribe() {
     //     content_id: visit_id,
     //     content_name: "content_name placeholder"
     // });
+
+    ttq.instance(ttqInstancePixelReference).track('Subscribe', {
+        content_id: visit_id,
+        content_name: "content_name placeholder"
+    });
 
     console.log("in the pixelTrackSubscribe");
 }
@@ -303,6 +361,12 @@ function pixelTrackContact() {
     //     content_type: 'product',
     //     content_name: "content_name placeholder"
     // });
+
+    ttq.instance(ttqInstancePixelReference).track('Contact', {
+        content_id: visit_id,
+        content_type: 'product',
+        content_name: "content_name placeholder"
+    });
 }
 
 function pixelTrackPurchase() {
@@ -354,6 +418,36 @@ function pixelTrackPurchase() {
     //     value: total,
     //     currency: 'USD',
     // });
+
+    ttq.instance(ttqInstancePixelReference).track('AddPaymentInfo', {
+        content_id: visit_id,
+        content_type: 'product',
+        content_name: 'content_name placeholder',
+        quantity: parseInt(quantity), //amount of items
+        price: total, //total amount
+        value: total, //per item
+        currency: 'USD',
+    });
+
+    ttq.instance(ttqInstancePixelReference).track('CompletePayment', {
+        content_id: visit_id,
+        content_type: 'product',
+        content_name: 'content_name placeholder',
+        quantity: parseInt(quantity),
+        price: total,
+        value: total,
+        currency: 'USD',
+    });
+
+    ttq.instance(ttqInstancePixelReference).track('PlaceAnOrder', {
+        content_id: visit_id,
+        content_type: 'product',
+        content_name: 'content_name placeholder',
+        quantity: parseInt(quantity),
+        price: total,
+        value: total,
+        currency: 'USD',
+    });
 }
 
 function addToCartClicked(event) {
