@@ -59,11 +59,11 @@ function readyEventHandler() {
 }
 
 function pixelTrackLandingPageTime() {
-    ttq.track('ViewContent', {
-        content_id: visit_id,
-        content_name: `view home page - 10 seconds - sample bounce rate test`,
-        content_type: 'product'
-    }, {event_id:'1239485'});
+    // ttq.track('ViewContent', {
+    //     content_id: visit_id,
+    //     content_name: `view home page - 10 seconds - sample bounce rate test`,
+    //     content_type: 'product'
+    // }, {event_id:'1239485'});
 }
 
 function mockLogin() {
@@ -95,10 +95,10 @@ function pixelIdentifyFunction(userPhoneNumber, userEmailAddress) {
 }
 
 function pixelCompleteRegistrationHandler() {
-    ttq.track('CompleteRegistration', {
-        content_id: visit_id,
-        content_name: 'registration complete'
-    });
+    // ttq.track('CompleteRegistration', {
+    //     content_id: visit_id,
+    //     content_name: 'registration complete'
+    // });
 }
 
 function mockPaymentDetailsDialogBox() {
@@ -125,15 +125,15 @@ function mockPaymentDetailsDialogBox() {
         pixelIdentifyHandler(external_id, userEmailAddress)
     }
 
-    ttq.track('InitiateCheckout', {
-        content_id: visit_id,
-        content_type: 'product',
-        content_name: 'content_name placeholder',
-        quantity: parseInt(quantity),
-        price: total,
-        value: total,
-        currency: 'USD',
-    });
+    // ttq.track('InitiateCheckout', {
+    //     content_id: visit_id,
+    //     content_type: 'product',
+    //     content_name: 'content_name placeholder',
+    //     quantity: parseInt(quantity),
+    //     price: total,
+    //     value: total,
+    //     currency: 'USD',
+    // });
 
     if (retVal === true) {
         if (!loggedIn) {
@@ -206,7 +206,7 @@ function subscribeClicked() {
     let input = document.getElementById("subscription_email").value;
 
     if (emailValidation(input)) {
-        ttq.track("Subscribe");
+        //ttq.track("Subscribe");
         alert('Please check the Pixel Helper for the Auto_email parameter!');
     } else {
         alert('Please enter a valid email address');
@@ -221,10 +221,10 @@ function removeCartItem(event) {
         pixelIdentifyHandler(external_id, userEmailAddress)
     }
 
-    ttq.track('ClickButton', {
-        content_id: "content_id placeholder",
-        content_name: "content_name placeholder"
-    });
+    //ttq.track('ClickButton', {
+    //    content_id: "content_id placeholder",
+    //    content_name: "content_name placeholder"
+    //});
 
     updateCartTotal()
 }
@@ -251,12 +251,12 @@ function quantityChanged(event) {
         total = total + (price * quantity)
     }
 
-    ttq.track('ClickButton', {
-        content_id: visit_id,
-        content_name: "content_name placeholder",
-        value: input.value,
-        price: total
-    });
+    // ttq.track('ClickButton', {
+    //     content_id: visit_id,
+    //     content_name: "content_name placeholder",
+    //     value: input.value,
+    //     price: total
+    // });
 
     updateCartTotal()
 }
@@ -269,15 +269,15 @@ function pixelTrackAddToCart(title, price) {
         pixelIdentifyHandler(external_id, userEmailAddress)
     }
 
-    ttq.track('AddToCart', {
-        content_id: visit_id,
-        content_type: 'product',
-        content_name: title,
-        quantity: 1,
-        price: priceInt,
-        value: priceInt,
-        currency: 'USD',
-    });
+    // ttq.track('AddToCart', {
+    //     content_id: visit_id,
+    //     content_type: 'product',
+    //     content_name: title,
+    //     quantity: 1,
+    //     price: priceInt,
+    //     value: priceInt,
+    //     currency: 'USD',
+    // });
 }
 
 function pixelTrackSubscribe() {
@@ -285,10 +285,10 @@ function pixelTrackSubscribe() {
         pixelIdentifyHandler(external_id, userEmailAddress)
     }
 
-    ttq.track('Subscribe', {
-        content_id: visit_id,
-        content_name: "content_name placeholder"
-    });
+    // ttq.track('Subscribe', {
+    //     content_id: visit_id,
+    //     content_name: "content_name placeholder"
+    // });
 
     console.log("in the pixelTrackSubscribe");
 }
@@ -298,11 +298,11 @@ function pixelTrackContact() {
         pixelIdentifyHandler(external_id, userEmailAddress)
     }
 
-    ttq.track('Contact', {
-        content_id: visit_id,
-        content_type: 'product',
-        content_name: "content_name placeholder"
-    });
+    // ttq.track('Contact', {
+    //     content_id: visit_id,
+    //     content_type: 'product',
+    //     content_name: "content_name placeholder"
+    // });
 }
 
 function pixelTrackPurchase() {
@@ -325,35 +325,35 @@ function pixelTrackPurchase() {
         pixelIdentifyHandler(external_id, userEmailAddress)
     }
 
-    ttq.track('AddPaymentInfo', {
-        content_id: visit_id,
-        content_type: 'product',
-        content_name: 'content_name placeholder',
-        quantity: parseInt(quantity), //amount of items
-        price: total, //total amount
-        value: total, //per item
-        currency: 'USD',
-    });
+    // ttq.track('AddPaymentInfo', {
+    //     content_id: visit_id,
+    //     content_type: 'product',
+    //     content_name: 'content_name placeholder',
+    //     quantity: parseInt(quantity), //amount of items
+    //     price: total, //total amount
+    //     value: total, //per item
+    //     currency: 'USD',
+    // });
 
-    ttq.track('CompletePayment', {
-        content_id: visit_id,
-        content_type: 'product',
-        content_name: 'content_name placeholder',
-        quantity: parseInt(quantity),
-        price: total,
-        value: total,
-        currency: 'USD',
-    });
+    // ttq.track('CompletePayment', {
+    //     content_id: visit_id,
+    //     content_type: 'product',
+    //     content_name: 'content_name placeholder',
+    //     quantity: parseInt(quantity),
+    //     price: total,
+    //     value: total,
+    //     currency: 'USD',
+    // });
 
-    ttq.track('PlaceAnOrder', {
-        content_id: visit_id,
-        content_type: 'product',
-        content_name: 'content_name placeholder',
-        quantity: parseInt(quantity),
-        price: total,
-        value: total,
-        currency: 'USD',
-    });
+    // ttq.track('PlaceAnOrder', {
+    //     content_id: visit_id,
+    //     content_type: 'product',
+    //     content_name: 'content_name placeholder',
+    //     quantity: parseInt(quantity),
+    //     price: total,
+    //     value: total,
+    //     currency: 'USD',
+    // });
 }
 
 function addToCartClicked(event) {
