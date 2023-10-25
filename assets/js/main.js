@@ -82,14 +82,14 @@ function viewContentImageClickHandler() {
         content_id: visit_id,
         content_name: ``,
         content_type: 'product'
-    });
+    }, {event_id:'ViewContent_1239485'});
     
     //Set twice on purpose to demonstrate double firing
     ttq.instance(ttqInstancePixelReference).track('ViewContent', {
         content_id: visit_id,
         content_name: ``,
         content_type: 'product'
-    });
+    }, {event_id:'ViewContent_01111111'});
 }
 
 function pixelTrackLandingPageTime() {
@@ -102,7 +102,7 @@ function pixelTrackLandingPageTime() {
         content_id: visit_id,
         content_name: `view home page - 10 seconds - sample bounce rate test`,
         content_type: 'product'
-    }, {event_id:'1239485'});
+    }, {event_id:'ViewContent_02222222'});
 }
 
 function mockLogin() {
@@ -143,7 +143,7 @@ function pixelCompleteRegistrationHandler() {
     ttq.instance(ttqInstancePixelReference).track('CompleteRegistration', {
         content_id: visit_id,
         content_name: 'registration complete' 
-    });
+    }, {event_id:'CompleteRegistration_03333333'});
 }
 
 function mockPaymentDetailsDialogBox() {
@@ -188,7 +188,7 @@ function mockPaymentDetailsDialogBox() {
         price: total,
         value: total,
         currency: 'USD',
-    });
+    }, {event_id:'InitiateCheckout_04444444'});
 
     if (retVal === true) {
         if (!loggedIn) {
@@ -261,7 +261,7 @@ function subscribeClicked() {
 
     if (emailValidation(input)) {
         //ttq.track("Subscribe");
-        ttq.instance(ttqInstancePixelReference).track("Subscribe");
+        ttq.instance(ttqInstancePixelReference).track("Subscribe",{},{event_id:'Subscribe_0555555'});
         alert('Please check the Pixel Helper for the Auto_email parameter!');
     } else {
         alert('Please enter a valid email address');
@@ -284,7 +284,7 @@ function removeCartItem(event) {
     ttq.instance(ttqInstancePixelReference).track('ClickButton', {
        content_id: "content_id placeholder",
        content_name: "content_name placeholder"
-    });
+    }, {event_id:'ClickButton_0666666'});
 
     updateCartTotal()
 }
@@ -323,7 +323,7 @@ function quantityChanged(event) {
         content_name: "content_name placeholder",
         value: input.value,
         price: total
-    });
+    }, {event_id:'ClickButton_08888888'});
 
     updateCartTotal()
 }
@@ -354,7 +354,7 @@ function pixelTrackAddToCart(title, price) {
         price: priceInt,
         value: priceInt,
         currency: 'USD',
-    });
+    }, {event_id:'AddToCart_09999999'});
 }
 
 function pixelTrackSubscribe() {
@@ -370,7 +370,7 @@ function pixelTrackSubscribe() {
     ttq.instance(ttqInstancePixelReference).track('Subscribe', {
         content_id: visit_id,
         content_name: "content_name placeholder"
-    });
+    }, {event_id:'Subscribe_0011111'});
 
     console.log("in the pixelTrackSubscribe");
 }
@@ -390,7 +390,7 @@ function pixelTrackContact() {
         content_id: visit_id,
         content_type: 'product',
         content_name: "content_name placeholder"
-    });
+    }, {event_id:'Contact_0022222'});
 }
 
 function pixelTrackPurchase() {
@@ -451,7 +451,7 @@ function pixelTrackPurchase() {
         price: total, //total amount
         value: total, //per item
         currency: 'USD',
-    });
+    }, {event_id:'AddPaymentInfo_0033333'});
 
     ttq.instance(ttqInstancePixelReference).track('CompletePayment', {
         content_id: visit_id,
@@ -461,7 +461,7 @@ function pixelTrackPurchase() {
         price: total,
         value: total,
         currency: 'USD',
-    });
+    }, {event_id:'CompletePayment_0044444'});
 
     ttq.instance(ttqInstancePixelReference).track('PlaceAnOrder', {
         content_id: visit_id,
@@ -471,7 +471,7 @@ function pixelTrackPurchase() {
         price: total,
         value: total,
         currency: 'USD',
-    });
+    }, {event_id:'PlaceAnOrder_0055555'});
 }
 
 function addToCartClicked(event) {
