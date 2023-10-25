@@ -35,10 +35,10 @@ function readyEventHandler() {
     // });
 
     // ttq.instance() for Custom Code Pixel only
-    ttq.instance(ttqInstancePixelReference).track('ViewContent', {
-        content_id: visit_id,
-        content_name: "view home page"
-    });
+    // ttq.instance(ttqInstancePixelReference).track('ViewContent', {
+    //     content_id: visit_id,
+    //     content_name: "view home page"
+    // });
 
     let removeCartItemButtons = document.getElementsByClassName('btn-danger')
     for (let i = 0; i < removeCartItemButtons.length; i++) {
@@ -64,8 +64,32 @@ function readyEventHandler() {
     document.getElementsByClassName('login__link')[0].addEventListener('click', mockLogin)
     document.getElementsByClassName('disable__cookie')[0].addEventListener('click', ttqDisableCookieFire)
 
+ 
+    document.getElementById("item-1").addEventListener('click', viewContentImageClickHandler);
+    document.getElementById("item-2").addEventListener('click', viewContentImageClickHandler);
+    document.getElementById("item-3").addEventListener('click', viewContentImageClickHandler);
+    document.getElementById("item-4").addEventListener('click', viewContentImageClickHandler);
+
+
     //Track if user is on landing page for more than 10 seconds
     window.setTimeout(pixelTrackLandingPageTime, 10000);
+}
+
+function viewContentImageClickHandler() {
+    alert("ViewContent event triggered");
+
+    ttq.instance(ttqInstancePixelReference).track('ViewContent', {
+        content_id: visit_id,
+        content_name: ``,
+        content_type: 'product'
+    });
+    
+    //Set twice on purpose to demonstrate double firing
+    ttq.instance(ttqInstancePixelReference).track('ViewContent', {
+        content_id: visit_id,
+        content_name: ``,
+        content_type: 'product'
+    });
 }
 
 function pixelTrackLandingPageTime() {
