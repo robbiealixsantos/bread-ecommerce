@@ -23,7 +23,7 @@ let visit_id = 0;
 let external_id = '9136abb9cb6c3d79df9bbd7b46c1f96a12557a8f89ada3f0a84ce0671d45e5a2';
 
 // TODO: Change this Pixel Reference for easy switching if required
-let ttqInstancePixelReference = 'CKR8EOJC77U1BIIGD66G';
+let ttqInstancePixelReference = 'CKSJ5U3C77U115KECRI0';
 
 //TT Events can be used as proxies 
 
