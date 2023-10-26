@@ -24,7 +24,7 @@ let external_id = '9136abb9cb6c3d79df9bbd7b46c1f96a12557a8f89ada3f0a84ce0671d45e
 let userPhoneNumber = '162af733d29d9bdf48e4a2cc5637af46983b893a4c92c257a460d24256d16c9f';
 
 // TODO: Change this Pixel Reference for easy switching if required
-let ttqInstancePixelReference = 'CKT5DSJC77U3K90HILE0';
+let ttqInstancePixelReference = 'CKT9PAJC77UDR4OH4GUG';
 
 //TT Events can be used as proxies 
 
@@ -94,11 +94,11 @@ function viewContentImageClickHandler() {
     }, {event_id:'ViewContent_1239485'});
     
     //Set twice on purpose to demonstrate double firing
-    ttq.instance(ttqInstancePixelReference).track('ViewContent', {
-        content_id: visit_id,
-        content_name: ``,
-        content_type: 'product'
-    }, {event_id:'ViewContent_01111111'});
+    // ttq.instance(ttqInstancePixelReference).track('ViewContent', {
+    //     content_id: visit_id,
+    //     content_name: ``,
+    //     content_type: 'product'
+    // }, {event_id:'ViewContent_01111111'});
 }
 
 function pixelTrackLandingPageTime() {
