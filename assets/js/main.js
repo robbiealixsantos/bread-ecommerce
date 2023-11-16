@@ -73,7 +73,7 @@ function readyEventHandler() {
 
 
     //Track if user is on landing page for more than 10 seconds
-    window.setTimeout(pixelTrackLandingPageTime, 10000);
+    //window.setTimeout(pixelTrackLandingPageTime, 10000);
 }
 
 function pixelIdentifyHandler(externalId, userEmailAddress) {
