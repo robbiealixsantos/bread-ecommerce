@@ -24,7 +24,7 @@ let external_id = '9136abb9cb6c3d79df9bbd7b46c1f96a12557a8f89ada3f0a84ce0671d45e
 let userPhoneNumber = '162af733d29d9bdf48e4a2cc5637af46983b893a4c92c257a460d24256d16c9f';
 
 // TODO: Change this Pixel Reference for easy switching if required
-let ttqInstancePixelReference = 'CKT9PAJC77UDR4OH4GUG';
+let ttqInstancePixelReference = 'CO67I9JC77UFE3KSC7VG';
 
 //TT Events can be used as proxies 
 
@@ -87,7 +87,7 @@ function pixelIdentifyHandler(externalId, userEmailAddress) {
 function viewContentImageClickHandler() {
     alert("ViewContent event triggered");
 
-    ttq.instance(ttqInstancePixelReference).track('ViewContent', {
+    ttq.track('ViewContent', {
         content_id: visit_id,
         content_name: ``,
         content_type: 'product'
@@ -100,18 +100,14 @@ function viewContentImageClickHandler() {
     //     content_type: 'product'
     // }, {event_id:'ViewContent_01111111'});
 }
+window.setTimeout(pixelTrackLandingPageTime, 10000);
 
 function pixelTrackLandingPageTime() {
-    // ttq.track('ViewContent', {
-    //     content_id: visit_id,
-    //     content_name: `view home page - 10 seconds - sample bounce rate test`,
-    //     content_type: 'product'
-    // }, {event_id:'1239485'});
-    ttq.instance(ttqInstancePixelReference).track('ViewContent', {
-        content_id: visit_id,
+    ttq.track('ViewContent', {
+        content_id: product_id,
         content_name: `view home page - 10 seconds - sample bounce rate test`,
         content_type: 'product'
-    }, {event_id:'ViewContent_02222222'});
+    }, {event_id:'1239485'});
 }
 
 function mockLogin() {
@@ -536,3 +532,5 @@ function updateCartTotal() {
     total = Math.round(total * 100) / 100
     document.getElementsByClassName('cart-total-price')[0].innerText = '$' + total
 }
+
+
