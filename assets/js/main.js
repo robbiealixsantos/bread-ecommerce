@@ -26,20 +26,12 @@ let userPhoneNumber = '162af733d29d9bdf48e4a2cc5637af46983b893a4c92c257a460d2425
 // TODO: Change this Pixel Reference for easy switching if required
 let ttqInstancePixelReference = 'CO67I9JC77UFE3KSC7VG';
 
-//TT Events can be used as proxies 
+// Cart array to build JSON object for checkout event
+let cart = []
 
+//TT Events can be used as proxies
 function readyEventHandler() {
     visit_id = generateRandomID();
-    // ttq.track('ViewContent', {
-    //     content_id: visit_id,
-    //     content_name: "view home page"
-    // });
-
-    // ttq.instance() for Custom Code Pixel only
-    // ttq.instance(ttqInstancePixelReference).track('ViewContent', {
-    //     content_id: visit_id,
-    //     content_name: "view home page"
-    // });
 
     let removeCartItemButtons = document.getElementsByClassName('btn-danger')
     for (let i = 0; i < removeCartItemButtons.length; i++) {
@@ -65,53 +57,66 @@ function readyEventHandler() {
     document.getElementsByClassName('login__link')[0].addEventListener('click', mockLogin)
     document.getElementsByClassName('disable__cookie')[0].addEventListener('click', ttqDisableCookieFire)
 
- 
-    document.getElementById("item-1").addEventListener('click', viewContentImageClickHandler);
-    document.getElementById("item-2").addEventListener('click', viewContentImageClickHandler);
-    document.getElementById("item-3").addEventListener('click', viewContentImageClickHandler);
-    document.getElementById("item-4").addEventListener('click', viewContentImageClickHandler);
-
-
     //Track if user is on landing page for more than 10 seconds
     //window.setTimeout(pixelTrackLandingPageTime, 10000);
 }
 
 function pixelIdentifyHandler(externalId, userEmailAddress) {
     ttq.identify({
-        email: userEmailAddress,
-        phone_number: '',
-        external_id: external_id
+        email: userEmailAddress
     })
 }
 
-function viewContentImageClickHandler() {
-    alert("ViewContent event triggered");
+function viewContentImgClick(name, product_id, cost) {
+    alert("This is simulating a PDP (Product Display Page) view and a ViewContent event will be triggered." + "\n" +
+    "Please check the Pixel Helper for Parameter Details");
+    
+    pixelIdentifyHandler(userEmailAddress);
+    ttq.track('ViewContent', {
+        content_id: product_id,
+        content_name: name,
+        content_type: 'product',
+        price: cost,
+        value: cost,
+        currency: 'USD'
+    });
+}
+
+function viewContentImgClickIncorrect(name, product_id, cost) {
+    alert("This is simulating a PDP (Product Display Page) view and a ViewContent event will be triggered." + "\n" +
+    "Please check the Pixel Helper for Parameter Details");
 
     ttq.track('ViewContent', {
-        content_id: visit_id,
-        content_name: ``,
-        content_type: 'product'
-    }, {event_id:'ViewContent_1239485'});
-    
-    //Set twice on purpose to demonstrate double firing
-    // ttq.instance(ttqInstancePixelReference).track('ViewContent', {
-    //     content_id: visit_id,
-    //     content_name: ``,
-    //     content_type: 'product'
-    // }, {event_id:'ViewContent_01111111'});
+        content_name: name,
+        content_type: 'bread',
+        price: cost,
+        currency: 'usd'
+    });
 }
-window.setTimeout(pixelTrackLandingPageTime, 10000);
+
+function viewContentDoubleFiringImageClickHandler(name, product_id, cost) {
+    alert("Duplicate ViewContent event due to client misconfiguration");
+
+    pixelIdentifyHandler(userEmailAddress);
+    ttq.track('ViewContent', {
+        content_id: product_id,
+        content_name: name,
+        content_type: 'product',
+        price: cost,
+        value: cost,
+        currency: 'USD'
+    });
+}
+//window.setTimeout(pixelTrackLandingPageTime, 10000);
 
 function pixelTrackLandingPageTime() {
     ttq.track('ViewContent', {
-        content_id: product_id,
-        content_name: `view home page - 10 seconds - sample bounce rate test`,
-        content_type: 'product'
-    }, {event_id:'1239485'});
+        content_name: `view home page - 10 seconds`
+    });
 }
 
 function mockLogin() {
-    let emailAddress = prompt("Mock login screen - enter an email address to continue. Entered email address will be used for advanced matching. Example of a manual implementation with Auto AM active - ttq.identify() function placed before the tracking event", "");
+    let emailAddress = prompt("Mock login screen - enter any email address to continue. Entered email address will be used for Manual Advanced Matching.", "");
     
     if (emailAddress.length > 0) {
       document.getElementById("login").innerHTML = "Welcome " + emailAddress;
@@ -128,7 +133,10 @@ function mockLogin() {
 
 function ttqDisableCookieFire() {
     ttq.disableCookie();
-    alert("ttq.disableCookie() fired! Cookies should now be disabled. Please check the Pixel Helper - it should show no Pixels present on page");
+    alert("ttq.disableCookie() fired! Cookies should now be disabled. Please check the Pixel Helper." + "\n" +
+     "Inside the Cookie details tile, you will see a red notification that says 'Not found'." + "\n" +
+     "This means that the Pixel and thus the 1st Party Cookies are disabled."
+    );
 }
 
 function pixelIdentifyFunction(userPhoneNumber, userEmailAddress) {
@@ -140,20 +148,14 @@ function pixelIdentifyFunction(userPhoneNumber, userEmailAddress) {
 }
 
 function pixelCompleteRegistrationHandler() {
-    // ttq.track('CompleteRegistration', {
-    //     content_id: visit_id,
-    //     content_name: 'registration complete'
-    // });
-
+    alert("CompleteRegistration event fired. Please check the Pixel Helper to view the hashed value of the Email address you entered on the previous step.");
     ttq.instance(ttqInstancePixelReference).track('CompleteRegistration', {
-        content_id: visit_id,
-        content_name: 'registration complete' 
-    }, {event_id:'CompleteRegistration_03333333'});
+        content_name: 'Complete Registration' 
+    });
 }
 
 function mockPaymentDetailsDialogBox() {
-    let retVal = confirm("This is a Mock Payment Information Screen - User Inputs Payment Information here and InitiateCheckout event is triggered. Events AddPaymentInfo, CompletePayment, " +
-        "and PlaceAnOrder are triggered afterwards. Clicking cancel here stops payment process and only InitiateCheckout event is tracked");
+    let retVal = confirm("This is a Mock Payment Information Screen - User Inputs Payment Information here and InitiateCheckout event is triggered. Clicking cancel here stops payment process and only InitiateCheckout event is tracked");
 
     let cartItemContainer = document.getElementsByClassName('cart-items')[0];
     let cartRows = cartItemContainer.getElementsByClassName('cart-row');
@@ -175,25 +177,12 @@ function mockPaymentDetailsDialogBox() {
         pixelIdentifyHandler(external_id, userEmailAddress)
     }
 
-    // ttq.track('InitiateCheckout', {
-    //     content_id: visit_id,
-    //     content_type: 'product',
-    //     content_name: 'content_name placeholder',
-    //     quantity: parseInt(quantity),
-    //     price: total,
-    //     value: total,
-    //     currency: 'USD',
-    // });
-
     ttq.instance(ttqInstancePixelReference).track('InitiateCheckout', {
-        content_id: visit_id,
-        content_type: 'product',
-        content_name: 'content_name placeholder',
         quantity: parseInt(quantity),
         price: total,
         value: total,
         currency: 'USD',
-    }, {event_id:'InitiateCheckout_04444444'});
+    });
 
     if (retVal === true) {
         if (!loggedIn) {
@@ -216,10 +205,11 @@ function mockPaymentDetailsDialogBox() {
 }
 
 function purchaseClicked() {
-    let cartItemContainer = document.getElementsByClassName('cart-items')[0];
-    let cartRows = cartItemContainer.getElementsByClassName('cart-row');
+    var cartItemContainer = document.getElementsByClassName('cart-items')[0];
+    var cartRows = cartItemContainer.getElementsByClassName('cart-row');
+    var contentsArray = [];
 
-    let total = 0
+    var total = 0
     for (let i = 0; i < cartRows.length; i++) {
         let cartRow = cartRows[i]
         let priceElement = cartRow.getElementsByClassName('cart-price')[0]
@@ -233,16 +223,18 @@ function purchaseClicked() {
         alert ("Please add items to your cart!")
         return;
     }
-
-    let paymentDetailsEntered = false;
+    
+    var paymentDetailsEntered = false;
     paymentDetailsEntered = mockPaymentDetailsDialogBox();
 
     if (paymentDetailsEntered) {
-        alert('Thank you for your purchase')
+        alert('CompleteRegistration, AddPaymentInfo, and CompletePayment events should have fired at the same time.' + "\n" + 
+        'Several events can fire at the same time and does not necessarily mean there is an issue. Please confirm with the client if this occurs.'
+        );
 
         pixelTrackPurchase();
     
-        let cartItems = document.getElementsByClassName('cart-items')[0]
+        var cartItems = document.getElementsByClassName('cart-items')[0]
         while (cartItems.hasChildNodes()) {
             cartItems.removeChild(cartItems.firstChild)
         }
@@ -265,8 +257,7 @@ function subscribeClicked() {
     let input = document.getElementById("subscription_email").value;
 
     if (emailValidation(input)) {
-        //ttq.track("Subscribe");
-        ttq.instance(ttqInstancePixelReference).track("Subscribe",{},{event_id:'Subscribe_0555555'});
+        ttq.instance(ttqInstancePixelReference).track("Subscribe",{});
         alert('Please check the Pixel Helper for the Auto_email parameter!');
     } else {
         alert('Please enter a valid email address');
@@ -276,21 +267,7 @@ function subscribeClicked() {
 function removeCartItem(event) {
     let buttonClicked = event.target
     buttonClicked.parentElement.parentElement.remove()
-
-    if (loggedIn) {
-        pixelIdentifyHandler(external_id, userEmailAddress)
-    }
-
-    //ttq.track('ClickButton', {
-    //    content_id: "content_id placeholder",
-    //    content_name: "content_name placeholder"
-    //});
-
-    ttq.instance(ttqInstancePixelReference).track('ClickButton', {
-       content_id: "content_id placeholder",
-       content_name: "content_name placeholder"
-    }, {event_id:'ClickButton_0666666'});
-
+    
     updateCartTotal()
 }
 
@@ -324,11 +301,9 @@ function quantityChanged(event) {
     // });
 
     ttq.instance(ttqInstancePixelReference).track('ClickButton', {
-        content_id: visit_id,
-        content_name: "content_name placeholder",
         value: input.value,
         price: total
-    }, {event_id:'ClickButton_08888888'});
+    });
 
     updateCartTotal()
 }
@@ -341,16 +316,6 @@ function pixelTrackAddToCart(title, price) {
         pixelIdentifyHandler(external_id, userEmailAddress)
     }
 
-    // ttq.track('AddToCart', {
-    //     content_id: visit_id,
-    //     content_type: 'product',
-    //     content_name: title,
-    //     quantity: 1,
-    //     price: priceInt,
-    //     value: priceInt,
-    //     currency: 'USD',
-    // });
-
     ttq.instance(ttqInstancePixelReference).track('AddToCart', {
         content_id: visit_id,
         content_type: 'product',
@@ -359,7 +324,7 @@ function pixelTrackAddToCart(title, price) {
         price: priceInt,
         value: priceInt,
         currency: 'USD',
-    }, {event_id:'AddToCart_09999999'});
+    });
 }
 
 function pixelTrackSubscribe() {
@@ -367,15 +332,10 @@ function pixelTrackSubscribe() {
         pixelIdentifyHandler(external_id, userEmailAddress)
     }
 
-    // ttq.track('Subscribe', {
-    //     content_id: visit_id,
-    //     content_name: "content_name placeholder"
-    // });
-
     ttq.instance(ttqInstancePixelReference).track('Subscribe', {
         content_id: visit_id,
         content_name: "content_name placeholder"
-    }, {event_id:'Subscribe_0011111'});
+    });
 
     console.log("in the pixelTrackSubscribe");
 }
@@ -385,17 +345,7 @@ function pixelTrackContact() {
         pixelIdentifyHandler(external_id, userEmailAddress)
     }
 
-    // ttq.track('Contact', {
-    //     content_id: visit_id,
-    //     content_type: 'product',
-    //     content_name: "content_name placeholder"
-    // });
-
-    ttq.instance(ttqInstancePixelReference).track('Contact', {
-        content_id: visit_id,
-        content_type: 'product',
-        content_name: "content_name placeholder"
-    }, {event_id:'Contact_0022222'});
+    ttq.instance(ttqInstancePixelReference).track('Contact', {});
 }
 
 function pixelTrackPurchase() {
@@ -418,65 +368,19 @@ function pixelTrackPurchase() {
         pixelIdentifyHandler(external_id, userEmailAddress)
     }
 
-    // ttq.track('AddPaymentInfo', {
-    //     content_id: visit_id,
-    //     content_type: 'product',
-    //     content_name: 'content_name placeholder',
-    //     quantity: parseInt(quantity), //amount of items
-    //     price: total, //total amount
-    //     value: total, //per item
-    //     currency: 'USD',
-    // });
-
-    // ttq.track('CompletePayment', {
-    //     content_id: visit_id,
-    //     content_type: 'product',
-    //     content_name: 'content_name placeholder',
-    //     quantity: parseInt(quantity),
-    //     price: total,
-    //     value: total,
-    //     currency: 'USD',
-    // });
-
-    // ttq.track('PlaceAnOrder', {
-    //     content_id: visit_id,
-    //     content_type: 'product',
-    //     content_name: 'content_name placeholder',
-    //     quantity: parseInt(quantity),
-    //     price: total,
-    //     value: total,
-    //     currency: 'USD',
-    // });
-
     ttq.instance(ttqInstancePixelReference).track('AddPaymentInfo', {
-        content_id: visit_id,
-        content_type: 'product',
-        content_name: 'content_name placeholder',
         quantity: parseInt(quantity), //amount of items
         price: total, //total amount
         value: total, //per item
         currency: 'USD',
-    }, {event_id:'AddPaymentInfo_0033333'});
+    });
 
     ttq.instance(ttqInstancePixelReference).track('CompletePayment', {
-        content_id: visit_id,
-        content_type: 'product',
-        content_name: 'content_name placeholder',
         quantity: parseInt(quantity),
         price: total,
         value: total,
         currency: 'USD',
-    }, {event_id:'CompletePayment_0044444'});
-
-    ttq.instance(ttqInstancePixelReference).track('PlaceAnOrder', {
-        content_id: visit_id,
-        content_type: 'product',
-        content_name: 'content_name placeholder',
-        quantity: parseInt(quantity),
-        price: total,
-        value: total,
-        currency: 'USD',
-    }, {event_id:'PlaceAnOrder_0055555'});
+    });
 }
 
 function addToCartClicked(event) {
@@ -486,8 +390,39 @@ function addToCartClicked(event) {
     let price = shopItem.getElementsByClassName('shop-item-price')[0].innerText
     let imageSrc = shopItem.getElementsByClassName('shop-item-image')[0].src
     addItemToCart(title, price, imageSrc)
-    pixelTrackAddToCart(title, price);
+    //pixelTrackAddToCart(title, price);
+    //pixelTrackAddToCartLatest(title, product_id, price)
     updateCartTotal()
+}
+
+
+//NEW ADDTOCART
+function pixelTrackAddToCartLatest(title, product_id, price) {
+    alert("Item Added To Cart. Please check the Pixel Helper for parameter details.");
+    pixelIdentifyHandler(userEmailAddress);
+    ttq.track('AddToCart', {
+        content_id: product_id,
+        content_name: title,
+        content_type: 'product',
+        price: price,
+        value: price,
+        currency: 'USD'
+    });
+
+    var itemAddedToCart = {
+        content_id: product_id,
+        content_name: title,
+        content_type: 'product',
+        price: price,
+        value: price,
+        currency: 'USD'
+    }
+    console.log(cart.includes(product_id));
+    if (cart.includes(itemAddedToCart) == false) {
+        cart.push(itemAddedToCart);
+    }
+    
+    console.log(cart)
 }
 
 function addItemToCart(title, price, imageSrc) {
@@ -509,12 +444,22 @@ function addItemToCart(title, price, imageSrc) {
         <span class="cart-price cart-column">${price}</span>
         <div class="cart-quantity cart-column">
             <input class="cart-quantity-input" type="number" value="1">
-            <a class="button shop-item-button remove-item" type="button">REMOVE</a>
+            <a onClick="removeFromCartArray('${title}')" class="button shop-item-button remove-item" type="button">REMOVE</a>
         </div>`
     cartRow.innerHTML = cartRowContents
     cartItems.append(cartRow)
     cartRow.getElementsByClassName('remove-item')[0].addEventListener('click', removeCartItem)
     cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('change', quantityChanged)
+}
+
+function removeFromCartArray(product_name) {
+    product_name = product_name.charAt(0) + product_name.substring(1).toLowerCase();
+    console.log(product_name);
+    cart.includes(product_name);
+    var index = cart.indexOf(product_name);
+    console.log(index)
+    cart.splice(index,2);
+    console.log(cart);
 }
 
 function updateCartTotal() {

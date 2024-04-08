@@ -11,14 +11,6 @@
             }(window, document, 'ttq');
         </script>
         <!-- ===== TIKTOK PIXEL ===== -->
-        <!-- <script>
-            !function (w, d, t) {
-              w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=document.createElement("script");o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
-            
-              ttq.load('CL0K3S3C77U115KEHRU0');
-              ttq.page();
-            }(window, document, 'ttq');
-        </script> -->
 
         <!-- Google Tag Manager - GTM PIXEL BASE CODE LOADS WITH THIS CONTAINER TAG -->
               <!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -124,7 +116,8 @@
                     <div class="featured__product">
                         <div class="featured__box">
                             <div class="featured__new">NEW</div>
-                            <img id="item-1" src="assets/img/feature1.png" alt="" class="featured__img shop-item-image">
+                            <!--<img id="item-1" src="assets/img/feature1.png" alt="" class="featured__img shop-item-image">-->
+                            <img onclick="viewContentImgClick('Focaccia','5678AB',30.00)" src="assets/img/feature1.png" alt="" class="featured__img shop-item-image">
                         </div>
 
                         <div class="featured__data">
@@ -133,14 +126,14 @@
                         </div>
 
                         <div class="featured__link">
-                            <a class="button shop-item-button">ADD TO CART</a>
+                            <a onclick="pixelTrackAddToCartLatest('Focaccia','5678AB',30.00)" class="button shop-item-button">ADD TO CART</a>
                         </div>
                     </div>
 
                     <div class="featured__product">
                         <div class="featured__box">
                             <div class="featured__new">NEW</div>
-                            <img id="item-2" src="assets/img/feature2.png" alt="" class="featured__img shop-item-image">
+                            <img onclick="viewContentImgClickIncorrect('English Muffin','8938JK',15.00)" src="assets/img/feature2.png" alt="" class="featured__img shop-item-image">
                         </div>
 
                         <div class="featured__data">
@@ -149,14 +142,14 @@
                         </div>
 
                         <div class="featured__link">
-                            <a class="button shop-item-button">ADD TO CART</a>
+                            <a onclick="pixelTrackAddToCartLatest('English Muffin','8938JK',15.00)" class="button shop-item-button">ADD TO CART</a>
                         </div>
                     </div>
 
                     <div class="featured__product">
                         <div class="featured__box">
                             <div class="featured__new">NEW</div>
-                            <img id="item-3" src="assets/img/feature3.png" alt="" class="featured__img shop-item-image">
+                            <img onclick="viewContentImgClick('Bagel','9483EP',40.00)" src="assets/img/feature3.png" alt="" class="featured__img shop-item-image">
                         </div>
 
                         <div class="featured__data">
@@ -165,14 +158,14 @@
                         </div>
 
                         <div class="featured__link">
-                            <a class="button shop-item-button">ADD TO CART</a>
+                            <a onclick="pixelTrackAddToCartLatest('Bagel','9483EP',40.00)" class="button shop-item-button">ADD TO CART</a>
                         </div>
                     </div>
 
                     <div class="featured__product">
                         <div class="featured__box">
                             <div class="featured__new">NEW</div>
-                            <img id="item-4" src="assets/img/feature4.png" alt="" class="featured__img shop-item-image">
+                            <img onclick="viewContentImgClickIncorrect('Baguette','9984UE',50.00)" src="assets/img/feature4.png" alt="" class="featured__img shop-item-image">
                         </div>
 
                         <div class="featured__data">
@@ -181,7 +174,7 @@
                         </div>
 
                         <div class="featured__link">
-                            <a class="button shop-item-button">ADD TO CART</a>
+                            <a onclick="pixelTrackAddToCartLatest('Baguette','9984UE',50.00)" class="button shop-item-button">ADD TO CART</a>
                         </div>
                     </div>
                 </div>
@@ -206,7 +199,7 @@
                 <div class="featured__container bd-grid">
                     <div class="featured__product">
                         <div class="featured__box">
-                            <img id="item-5" src="assets/img/new1.png" alt="" class="featured__img shop-item-image">
+                            <img onclick="viewContentImgClickIncorrect('Sourdough','0044JH',30.00)" src="assets/img/new1.png" alt="" class="featured__img shop-item-image">
                         </div>
 
                         <div class="featured__data">
@@ -215,13 +208,13 @@
                         </div>
 
                         <div class="featured__link">
-                            <a class="button shop-item-button">ADD TO CART</a>
+                            <a onclick="pixelTrackAddToCartLatest('Sourdough','0044JH',30.00)" class="button shop-item-button">ADD TO CART</a>
                         </div>
                     </div>
 
                     <div class="featured__product">
                         <div class="featured__box">
-                            <img id="item-6" src="assets/img/new2.png" alt="" class="featured__img shop-item-image">
+                            <img onclick="viewContentImgClick('Pumpkin','9472LO',15.00)" src="assets/img/new2.png" alt="" class="featured__img shop-item-image">
                         </div>
 
                         <div class="featured__data">
@@ -230,13 +223,13 @@
                         </div>
 
                         <div class="featured__link">
-                            <a class="button shop-item-button">ADD TO CART</a>
+                            <a onclick="pixelTrackAddToCartLatest('Pumpkin','9472LO',15.00)" class="button shop-item-button">ADD TO CART</a>
                         </div>
                     </div>
 
                     <div class="featured__product">
                         <div class="featured__box">
-                            <img id="item-6" src="assets/img/new3.png" alt="" class="featured__img shop-item-image">
+                            <img onclick="viewContentImgClickIncorrect('Rye','3498HR',40.00)" src="assets/img/new3.png" alt="" class="featured__img shop-item-image">
                         </div>
 
                         <div class="featured__data">
@@ -245,7 +238,7 @@
                         </div>
 
                         <div class="featured__link">
-                            <a class="button shop-item-button">ADD TO CART</a>
+                            <a onclick="pixelTrackAddToCartLatest('Rye','3498HR',40.00)" class="button shop-item-button">ADD TO CART</a>
                         </div>
                     </div>
                 </div>
@@ -256,7 +249,7 @@
                 <div class="featured__container bd-grid">
                     <div class="featured__product">
                         <div class="featured__box">
-                            <img id="item-7" src="assets/img/new4.png" alt="" class="featured__img shop-item-image">
+                            <img onclick="viewContentImgClick('Croissant','9482RI',30.00)" src="assets/img/new4.png" alt="" class="featured__img shop-item-image">
                         </div>
 
                         <div class="featured__data">
@@ -265,13 +258,13 @@
                         </div>
 
                         <div class="featured__link">
-                            <a class="button shop-item-button">ADD TO CART</a>
+                            <a onclick="pixelTrackAddToCartLatest('Croissant','9482RI',30.00)" class="button shop-item-button">ADD TO CART</a>
                         </div>
                     </div>
 
                     <div class="featured__product">
                         <div class="featured__box">
-                            <img id="item-8" src="assets/img/new5.png" alt="" class="featured__img shop-item-image">
+                            <img onclick="viewContentImgClickIncorrect('Challah','9472NR',15.00)" src="assets/img/new5.png" alt="" class="featured__img shop-item-image">
                         </div>
 
                         <div class="featured__data">
@@ -280,13 +273,13 @@
                         </div>
 
                         <div class="featured__link">
-                            <a class="button shop-item-button">ADD TO CART</a>
+                            <a onclick="pixelTrackAddToCartLatest('Challah','9472NR',15.00)" class="button shop-item-button">ADD TO CART</a>
                         </div>
                     </div>
 
                     <div class="featured__product">
                         <div class="featured__box">
-                            <img id="item-9" src="assets/img/new6.png" alt="" class="featured__img shop-item-image">
+                            <img onclick="viewContentImgClick('Ciabatta','9378AS',15.00)" src="assets/img/new6.png" alt="" class="featured__img shop-item-image">
                         </div>
 
                         <div class="featured__data">
@@ -295,7 +288,7 @@
                         </div>
 
                         <div class="featured__link">
-                            <a class="button shop-item-button">ADD TO CART</a>
+                            <a onclick="pixelTrackAddToCartLatest('Ciabatta','9378AS',15.00)" class="button shop-item-button">ADD TO CART</a>
                         </div>
                     </div>
                 </div>
@@ -315,7 +308,7 @@
                 <strong class="cart-total-title">Total</strong>
                 <span class="cart-total-price">$0</span>
             </div>
-            <button class="btn btn-primary btn-purchase" type="button">PURCHASE</button>
+            <button class="btn btn-primary btn-purchase" type="button">INITIATE CHECKOUT</button>
         </section>
 
         <!--===== NEWSLETTER =====-->
