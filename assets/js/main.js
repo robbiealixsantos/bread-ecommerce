@@ -416,7 +416,7 @@ function addToCartClicked(event) {
 
 //NEW ADDTOCART
 function pixelTrackAddToCartLatest(title, product_id, price) {
-    alert("Item Added To Cart. Please check the Pixel Helper for parameter details.");
+    alert("Item Added To Cart. Please check the Pixel Helper for parameter details. Scroll down to the bottom of the page to view your cart.");
     pixelIdentifyHandler(userEmailAddress);
     ttq.track('AddToCart', {
         content_id: product_id,
@@ -444,7 +444,7 @@ function pixelTrackAddToCartLatest(title, product_id, price) {
 }
 
 function pixelTrackAddToCartLatest2x(title, product_id, price) {
-    alert("Item Added To Cart. Please check the Pixel Helper for parameter details.");
+    alert("Item Added To Cart. Please check the Pixel Helper for parameter details. Scroll down to the bottom of the page to view your cart.");
     pixelIdentifyHandler(userEmailAddress);
     ttq.track('AddToCart', {
         content_id: product_id,
