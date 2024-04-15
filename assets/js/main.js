@@ -94,6 +94,24 @@ function viewContentImgClickIncorrect(name, product_id, cost) {
     });
 }
 
+function viewContentImgClickIncorrect2x(name, product_id, cost) {
+    alert("This is simulating a PDP (Product Display Page) view and a ViewContent event will be triggered." + "\n" +
+    "Please check the Pixel Helper for Parameter Details");
+
+    ttq.track('ViewContent', {
+        content_name: name,
+        content_type: 'bread',
+        price: cost,
+        currency: 'usd'
+    });
+    ttq.track('ViewContent', {
+        content_name: name,
+        content_type: 'bread',
+        price: cost,
+        currency: 'usd'
+    });
+}
+
 function viewContentDoubleFiringImageClickHandler(name, product_id, cost) {
     alert("Duplicate ViewContent event due to client misconfiguration");
 
@@ -400,6 +418,42 @@ function addToCartClicked(event) {
 function pixelTrackAddToCartLatest(title, product_id, price) {
     alert("Item Added To Cart. Please check the Pixel Helper for parameter details.");
     pixelIdentifyHandler(userEmailAddress);
+    ttq.track('AddToCart', {
+        content_id: product_id,
+        content_name: title,
+        content_type: 'product',
+        price: price,
+        value: price,
+        currency: 'USD'
+    });
+
+    var itemAddedToCart = {
+        content_id: product_id,
+        content_name: title,
+        content_type: 'product',
+        price: price,
+        value: price,
+        currency: 'USD'
+    }
+    console.log(cart.includes(product_id));
+    if (cart.includes(itemAddedToCart) == false) {
+        cart.push(itemAddedToCart);
+    }
+    
+    console.log(cart)
+}
+
+function pixelTrackAddToCartLatest2x(title, product_id, price) {
+    alert("Item Added To Cart. Please check the Pixel Helper for parameter details.");
+    pixelIdentifyHandler(userEmailAddress);
+    ttq.track('AddToCart', {
+        content_id: product_id,
+        content_name: title,
+        content_type: 'product',
+        price: price,
+        value: price,
+        currency: 'USD'
+    });
     ttq.track('AddToCart', {
         content_id: product_id,
         content_name: title,
