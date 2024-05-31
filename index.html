@@ -88,6 +88,7 @@
         var ts = Date.now() 
         var queryString = window.location.search; 
         var ttclid=urlParams.get('ttclid'); 
+        console.log('ttclid value: ' + ttclid);
         pixel.src = 'https://analytics.tiktok.com/api/v2/pixel_event_track?pixel_code=CO67I9JC77UFE3KSC7VG&event=ViewContent&event_id='+ts+rand+'&ttclid='+ttclid;} 
     </script> 
 
