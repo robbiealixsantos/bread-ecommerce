@@ -78,7 +78,7 @@
         var pixel = document.createElement('img'); 
         var rand = Math.floor(Math.random()*90000) + 10000 
         var ts = Date.now() 
-        var urlParams = window.location.search; 
+        var urlParams = new URLSearchParams(window.location.search);
         var ttclid=urlParams.get('ttclid'); 
         pixel.src = 'https://analytics.tiktok.com/api/v2/pixel_event_track?pixel_code=CO67I9JC77UFE3KSC7VG&event='+event_name+'&event_id='+ts+rand+'&ttclid='+ttclid;}
         
@@ -86,7 +86,7 @@
         var pixel = document.createElement('img'); 
         var rand = Math.floor(Math.random()*90000) + 10000 
         var ts = Date.now() 
-        var urlParams = window.location.search; 
+        var urlParams = new URLSearchParams(window.location.search);
         var ttclid=urlParams.get('ttclid'); 
         console.log('ttclid value: ' + ttclid);
         pixel.src = 'https://analytics.tiktok.com/api/v2/pixel_event_track?pixel_code=CO67I9JC77UFE3KSC7VG&event=ViewContent&event_id='+ts+rand+'&ttclid='+ttclid;} 
