@@ -61,6 +61,7 @@ function readyEventHandler() {
     //window.setTimeout(pixelTrackLandingPageTime, 10000);
 }
 
+
 function pixelIdentifyHandler(externalId, userEmailAddress) {
     ttq.identify({
         email: userEmailAddress
@@ -271,15 +272,18 @@ function emailValidation(input) {
 }
 
 function subscribeClicked() {
-    alert("Auto AM test - No ttq.identify() function placed before the tracking event");
+    // alert("Auto AM test - No ttq.identify() function placed before the tracking event");
+    console.log("in the click");
     let input = document.getElementById("subscription_email").value;
-
+    
     if (emailValidation(input)) {
         ttq.instance(ttqInstancePixelReference).track("Subscribe",{});
-        alert('Please check the Pixel Helper for the Auto_email parameter!');
+        // alert('Please check the Pixel Helper for the Auto_email parameter!');
     } else {
-        alert('Please enter a valid email address');
+        //alert('Please enter a valid email address');
     }
+    
+    document.getElementById("subscribeButton").hidden = true
 }
 
 function removeCartItem(event) {
