@@ -67,9 +67,15 @@
         <!-- Previous Container Tags -->
         <!-- GTM-KPPSQ2Q3
              GTM-NVVRM2T -->
-             
+
              <img src="https://analytics.tiktok.com/api/v2/pixel_event_track?pixel_code=CO67I9JC77UFE3KSC7VG&event=ViewContent&event_id=221312312353"
              height="1" width="1" style="display:none"/> 
+
+             <script> 
+                function triggerImagePixel(event_name) { 
+                var pixel = document.createElement('img'); 
+                pixel.src = 'https://analytics.tiktok.com/api/v2/pixel_event_track?pixel_code=CO67I9JC77UFE3KSC7VG&event='+event_name+'&event_id=234234324234235234';} 
+            </script> 
 
         <!--===== HEADER =====-->
         <header class="l-header">
@@ -119,7 +125,8 @@
                         <div class="featured__box">
                             <div class="featured__new">NEW</div>
                             <!--<img id="item-1" src="assets/img/feature1.png" alt="" class="featured__img shop-item-image">-->
-                            <img onclick="viewContentImgClick('Focaccia','5678AB',30.00)" src="assets/img/feature1.png" alt="" class="featured__img shop-item-image">
+                            <!-- <img onclick="viewContentImgClick('Focaccia','5678AB',30.00)" src="assets/img/feature1.png" alt="" class="featured__img shop-item-image"> -->
+                            <img onclick="triggerImagePixel('ClickButton)" src="assets/img/feature1.png" alt="" class="featured__img shop-item-image">
                         </div>
 
                         <div class="featured__data">
