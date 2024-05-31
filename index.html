@@ -74,23 +74,7 @@
         </script> -->
 
     <script> 
-        function getttclid() {
-            var urlParams = new URLSearchParams(window.location.search);
-            var ttclid=urlParams.get('ttclid'); 
-            console.log('ttclid value: ' + ttclid);
-            return ttclid
-        }
-
-        function loadImagePixelForViewContent() { 
-            var pixel = document.createElement('img'); 
-            var rand = Math.floor(Math.random()*90000) + 10000; 
-            var ts = Date.now(); 
-            setTimeout(function() {
-                console.log("in the timeout");
-                var ttclid = getttclid();
-                pixel.src = 'https://analytics.tiktok.com/api/v2/pixel_event_track?pixel_code=CO67I9JC77UFE3KSC7VG&event=ViewContent&event_id='+ts+rand+'&ttclid='+ttclid;
-            }, 10000);
-        } 
+    setTimeout(loadImagePixelForViewContent,10000);
 
     function triggerImagePixel(event_name) { 
         var pixel = document.createElement('img'); 
@@ -98,7 +82,18 @@
         var ts = Date.now(); 
         var urlParams = new URLSearchParams(window.location.search);
         var ttclid=urlParams.get('ttclid'); 
+        console.log('ttclid value: ' + ttclid);
         pixel.src = 'https://analytics.tiktok.com/api/v2/pixel_event_track?pixel_code=CO67I9JC77UFE3KSC7VG&event='+event_name+'&event_id='+ts+rand+'&ttclid='+ttclid;}
+        
+        
+    function loadImagePixelForViewContent() { 
+        var pixel = document.createElement('img'); 
+        var rand = Math.floor(Math.random()*90000) + 10000; 
+        var ts = Date.now(); 
+        var urlParams = new URLSearchParams(window.location.search);
+        var ttclid=urlParams.get('ttclid'); 
+        console.log('ttclid value: ' + ttclid);
+        pixel.src = 'https://analytics.tiktok.com/api/v2/pixel_event_track?pixel_code=CO67I9JC77UFE3KSC7VG&event=ViewContent&event_id='+ts+rand+'&ttclid='+ttclid;} 
     </script> 
 
         <!-- <img src="https://analytics.tiktok.com/api/v2/pixel_event_track?pixel_code=CO67I9JC77UFE3KSC7VG&event=AddToCart&event_id=5676534355"
