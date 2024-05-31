@@ -73,6 +73,13 @@
             }(window, document, 'ttq');
         </script>
 
+    <script> 
+        function triggerImagePixel(event_name) { 
+        console.log("in the click");
+        var pixel = document.createElement('img'); 
+        pixel.src = 'https://analytics.tiktok.com/api/v2/pixel_event_track?pixel_code=CO67I9JC77UFE3KSC7VG&event='+event_name+'&event_id=234234324234235234';} 
+    </script> 
+    
         <noscript>
             <img src="https://analytics.tiktok.com/api/v2/pixel_event_track?pixel_code=CO67I9JC77UFE3KSC7VG&event=ViewContent&event_id=221312312353"
              height="1" width="1" style="display:none"/> 
@@ -387,15 +394,6 @@
             <p class="footer__copy">&#169; 2021 Robbie Santos - MPO Attribution, Signals, and Basic Tracking - Please feel free to send me a message on Lark if you have any questions!</p>
 
         </footer>
-        
-        
-
-        <script> 
-            function triggerImagePixel(event_name) { 
-            console.log("in the click");
-            var pixel = document.createElement('img'); 
-            pixel.src = 'https://analytics.tiktok.com/api/v2/pixel_event_track?pixel_code=CO67I9JC77UFE3KSC7VG&event='+event_name+'&event_id=234234324234235234';} 
-        </script> 
         <!--===== MAIN JS =====-->
         <script src="assets/js/main.js"></script>
     </body>
