@@ -80,12 +80,14 @@
             }(window, document, 'ttq');
         </script> -->
 
-    <!-- <script> 
+    <script> 
         function triggerImagePixel(event_name) { 
         console.log("in the click");
-        var pixel= document.createElement('img'); 
-        pixel.src= 'https://analytics.tiktok.com/api/v2/pixel_event_track?pixel_code=CO67I9JC77UFE3KSC7VG&event='+event_name+'&event_id=6756766757';} 
-    </script>  -->
+        var pixel= document.createElement('img');
+        var rand = Math.floor(Math.random()*90000) + 10000;
+        var ts = Date.now() 
+        pixel.src= 'https://analytics.tiktok.com/api/v2/pixel_event_track?pixel_code=CO67I9JC77UFE3KSC7VG&event='+event_name+'&event_id='+ts+rand;} 
+    </script> 
 
         <!-- <img src="https://analytics.tiktok.com/api/v2/pixel_event_track?pixel_code=CO67I9JC77UFE3KSC7VG&event=AddToCart&event_id=5676534355"
         height="1" width="1" style="display:none"/>  -->
@@ -94,13 +96,6 @@
         <!-- Previous Container Tags -->
         <!-- GTM-KPPSQ2Q3
              GTM-NVVRM2T -->
-        <noscript>
-            <img src="https://analytics.tiktok.com/api/v2/pixel_event_track?
-                    pixel_code=CO67I9JC77UFE3KSC7VG
-                    &event=Pageview
-                    &event_id=221312312353"
-            height="1" width="1" style="display:none"/>
-        </noscript>
         <img src="https://analytics.tiktok.com/api/v2/pixel_event_track?pixel_code=CO67I9JC77UFE3KSC7VG&event=InitiateCheckout&event_id=67345435344" height="1" width="1" style="display:none"/>
 
         <!--===== HEADER =====-->
