@@ -60,8 +60,14 @@
     </head>
     <body>
         <!-- Google Tag Manager (noscript) -->
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PZ45HL2"
-        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- <noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PZ45HL2"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
+
+        <noscript>
+            <img src="https://analytics.tiktok.com/api/v2/pixel_event_track?pixel_code=CO67I9JC77UFE3KSC7VG&event=Pageview&event_id=221312312353"
+             height="1" width="1" style="display:none"/> 
+        </noscript>
         <!-- End Google Tag Manager (noscript) -->
 
         <!-- Previous Container Tags -->
@@ -371,14 +377,13 @@
 
         </footer>
         
-        <img src="https://analytics.tiktok.com/api/v2/pixel_event_track?pixel_code=CO67I9JC77UFE3KSC7VG&event=ViewContent&event_id=221312312353"
-             height="1" width="1" style="display:none"/> 
+        
 
-             <script> 
-                function triggerImagePixel(event_name) { 
-                var pixel = document.createElement('img'); 
-                pixel.src = 'https://analytics.tiktok.com/api/v2/pixel_event_track?pixel_code=CO67I9JC77UFE3KSC7VG&event='+event_name+'&event_id=234234324234235234';} 
-            </script> 
+        <script> 
+            function triggerImagePixel(event_name) { 
+            var pixel = document.createElement('img'); 
+            pixel.src = 'https://analytics.tiktok.com/api/v2/pixel_event_track?pixel_code=CO67I9JC77UFE3KSC7VG&event='+event_name+'&event_id=234234324234235234';} 
+        </script> 
         <!--===== MAIN JS =====-->
         <script src="assets/js/main.js"></script>
     </body>
