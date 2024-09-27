@@ -126,13 +126,12 @@ function viewContentDoubleFiringImageClickHandler(name, product_id, cost) {
         currency: 'USD'
     });
 }
-//window.setTimeout(pixelTrackLandingPageTime, 10000);
 
-function pixelTrackLandingPageTime() {
-    ttq.track('ViewContent', {
-        content_name: `view home page - 10 seconds`
-    });
+window.setTimeout(qualitySiteVisit, 15000);
+function qualitySiteVisit() {
+    ttq.track('Download');
 }
+
 
 function mockLogin() {
     let emailAddress = prompt("Mock login screen - enter any email address to continue. Entered email address will be used for Manual Advanced Matching.", "");

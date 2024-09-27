@@ -2,14 +2,14 @@
 <html lang="en">
     <head>
         <!-- ===== TIKTOK PIXEL ===== -->
-        <!-- <script>
+        <script>
             !function (w, d, t) {
               w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=document.createElement("script");o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
             
               ttq.load('CO67I9JC77UFE3KSC7VG');
               ttq.page();
             }(window, document, 'ttq');
-        </script> -->
+        </script>
         <!-- ===== TIKTOK PIXEL ===== -->
 
         <!-- Google Tag Manager - GTM PIXEL BASE CODE LOADS WITH THIS CONTAINER TAG -->
@@ -44,6 +44,7 @@
         <noscript>
             <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PZ45HL2"
         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+         <!-- Google Tag Manager (noscript) -->
 
     <script> 
         function triggerImagePixel(event_name) { 
@@ -55,6 +56,40 @@
         console.log('ttclid value: ' + ttclid);
         pixel.src = 'https://analytics.tiktok.com/api/v2/pixel_event_track?pixel_code=CO67I9JC77UFE3KSC7VG&event='+event_name+'&event_id='+ts+rand+'&ttclid='+ttclid;}
         
+        function triggerImagePixel_AIAevent(event_name) { 
+        var pixel = document.createElement('img'); 
+        var rand = Math.floor(Math.random()*90000) + 10000; 
+        var ts = Date.now(); 
+        var urlParams = new URLSearchParams(window.location.search);
+        var ttclid=urlParams.get('ttclid'); 
+        console.log('ttclid value: ' + ttclid);
+        pixel.src = 'https://analytics.tiktok.com/api/v2/pixel_event_track?pixel_code=CO67I9JC77UFE3KSC7VG&event='+event_name+'&event_id='+ts+rand+'&ttclid='+ttclid+
+        '&props.content_ids=[ABC,CDE]' +
+        '&props.make=Subaru' +
+        '&props.model=Outback' +
+        '&props.postal_code=94112' +
+        '&props.state_of_vehicle=Used' +
+        '&props.year=2013' +
+        '&props.content_type=vehicle' +
+        '&props.country=USA' +
+        '&props.mileage.value=5000' +
+        '&props.mileage.unit=MI' +
+        '&props.exterior_color=black' +
+        '&props.interior_color=brown' +
+        '&props.transmission=Automatic' +
+        '&props.body_style=Wagon' +
+        '&props.fuel_type=Hybrid' +
+        '&props.drivetrain=AWD' +
+        '&props.preferred_price_range=[8000,12000]' +
+        '&props.trim=5DR' + 
+        '&props.vin=1FTEW1E47LFA48859' +
+        '&props.condition_of_vehicle=Good' +
+        '&props.viewcontent_type=ModelPage' +
+        '&props.page_type=VehicleInventory' +
+        '&props.lead_type=Inventory' +
+        '&props.softlead_type=Quote';
+        }
+
         function loadImagePixelForViewContent() { 
         var pixel = document.createElement('img'); 
         var rand = Math.floor(Math.random()*90000) + 10000; 
@@ -122,7 +157,7 @@
                             <div class="featured__new">NEW</div>
                             <!--<img id="item-1" src="assets/img/feature1.png" alt="" class="featured__img shop-item-image">-->
                             <!-- <img onclick="viewContentImgClick('Focaccia','5678AB',30.00)" src="assets/img/feature1.png" alt="" class="featured__img shop-item-image"> -->
-                            <img onclick="triggerImagePixel('ClickButton')" src="assets/img/feature1.png" alt="" class="featured__img shop-item-image">
+                            <img onclick="triggerImagePixel_AIAevent('ClickButton')" src="assets/img/feature1.png" alt="" class="featured__img shop-item-image">
                         </div>
 
                         <div class="featured__data">
